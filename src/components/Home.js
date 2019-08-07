@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadCustomer } from '../actions';
 
+import { loadTalha } from '../actions';
+
 class Home extends Component {
 
     render() {
 
-        const { dispatch, customer } = this.props
+        const { dispatch, customer,talha } = this.props
         return (
             <div>
 
@@ -14,8 +16,14 @@ class Home extends Component {
 
             <h1>{ this.props.customer.address }</h1>
 
+            <h1>{ this.props.talha.address }</h1>
+
             <ul>
                 { customer.list.map( (item, index) => (
+                    <li key={index}>{item.name}</li>
+                    ))}
+
+                   { talha.list.map( (item, index) => (
                     <li key={index}>{item.name}</li>
                     ))}
             </ul>
@@ -28,7 +36,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-    customer: state.customerReducer
+    customer: state.customerReducer,
+    talha:state.talhaReducer
 })
 
 export default connect(mapStateToProps)(Home)

@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
 import customerReducer from './customerReducer'
+import talhaReducer from './talhaReducer'
 
 const rootReducer = combineReducers({
-  customerReducer
+  customerReducer,
+  talhaReducer
 })
 
 export default rootReducer
