@@ -27,7 +27,11 @@ export const loadTalha = () => (dispatch, getState) => {
       list: [
         {
           id: 205,
-          name: 'From talha reducer'
+          name: 'From talha reducer after click'
+        },
+        {
+          id: 206,
+          name: 'From talha reducer after click'
         }
       ]
     }
