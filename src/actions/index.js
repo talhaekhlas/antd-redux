@@ -18,8 +18,17 @@ export const loadCustomer = () => (dispatch, getState) => {
 }
 
 
+//please explain what is this
+export const loadTalha = () => async (dispatch, getState) => {
+  
+  const abc = getState().talhaReducer
 
-export const loadTalha = () => (dispatch, getState) => {
+ await dispatch({
+    type: 'ABC',
+    payload: {
+      sadik: abc
+    }
+  })
 
   dispatch({
     type: LOAD_TALHA,

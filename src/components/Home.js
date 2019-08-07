@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button } from 'antd';
+import {Layout} from 'antd';
 import { connect } from 'react-redux'
 import { loadCustomer } from '../actions';
 
@@ -8,8 +8,10 @@ import { loadTalha } from '../actions';
 class Home extends Component {
 
     render() {
-
+        
+        
         const { dispatch, customer,talha } = this.props
+        
         return (
             <div>
 
@@ -31,9 +33,6 @@ class Home extends Component {
 
             <input type="button" value="Click Here" onClick={ () => dispatch(loadCustomer()) }/>
 
-         
-
-
             <input type="button" value="Click Here to load talha" onClick={ () => dispatch(loadTalha()) }/>
 
 
@@ -46,7 +45,8 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
     customer: state.customerReducer,
-    talha:state.talhaReducer
+    talha:state.talhaReducer,
+    
 })
 
 export default connect(mapStateToProps)(Home)
