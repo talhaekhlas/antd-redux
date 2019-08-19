@@ -17,37 +17,51 @@ class TodoForm extends Component {
         this.props.form.validateFields();
       }
     
-      handleSubmit = (e) => {
+      handleSubmit = async (e) => {
         e.preventDefault();
 
         // console.log(this.props);
 
         const {dispatch } = this.props;
 
-        console.log('before dispatch:',this.props.todo);
+        
 
-        dispatch(todoAdd());
+        const prevList = [...this.props.todo.list,{id:304,name:this.props.form.getFieldValue('username')}];
+        console.log('before dispatch:',prevList);
+
+        await dispatch(todoAdd(prevList));
 
         console.log('after dispatch:',this.props.todo);
 
         
+   
+       this.props.form.setFieldsValue( { "username" :  '' } ); 
+     
+       this.props.form.validateFields((err, values) => {
 
-       // this.props.form.setFieldsValue( { "username" :  this.props.todo.address } ); 
-
-        // this.props.form.resetFields();
-
-        //const habma = () => dispatch(loadCustomer())
-        // despatch(todoAdd())
-        this.props.form.validateFields((err, values) => {
-
-          
           if (!err) {
-            //console.log('Received values of form: ', values);
+            console.log('Received values of form: ', values);
           }
 
 
         });
       };
+
+      deleteItem=async(deleteId)=>{
+          const prevList =[...this.props.todo.list];
+          const {dispatch } = this.props;
+
+          prevList.splice(deleteId,1);
+
+          dispatch(todoAdd(prevList));
+
+          // console.log(prevList);
+          console.log(deleteId);
+          
+          console.log(prevList[deleteId]);
+
+         
+      }
     
       render() {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
@@ -58,8 +72,11 @@ class TodoForm extends Component {
         const usernameError = isFieldTouched('username') && getFieldError('username');
         const passwordError = isFieldTouched('password') && getFieldError('password');
 
-        const hamba = todo.address;
+       
         return (
+          <div>
+
+          
           <Form layout="inline" onSubmit={this.handleSubmit}>
              {todo.address}
             <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
@@ -90,6 +107,21 @@ class TodoForm extends Component {
               </Button>
             </Form.Item>
           </Form>
+
+          <ul>
+                { todo.list.map( (item, index) => (
+                  <div>
+                    <li key={index}>
+                    {item.name}
+                    <Button key={index} type="danger" htmlType="submit" onClick={()=>this.deleteItem(item)}>
+                    delete
+                  </Button><Button key={index} type="danger" htmlType="submit" onClick={()=>this.deleteItem(index)}>
+                    edit
+                  </Button></li></div>
+                    ))}
+
+            </ul>
+          </div>
         );
       }
 }
