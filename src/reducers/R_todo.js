@@ -1,5 +1,16 @@
 import { TODO_ADD } from '../actions/A_todoForm'
 import { EDIT_PAGE } from '../actions/A_todoForm'
+import { TODO_FROM_SERVER } from '../actions/A_todoForm'
+import axios from 'axios'
+
+
+let hamba = axios.get('http://jsonplaceholder.typicode.com/todos').then(response => response.data)
+.then((data) => {
+
+    
+ })
+
+ console.log('check',hamba);
 
 const initialState = {
     list: [
@@ -13,7 +24,10 @@ const initialState = {
         },
     ],
     address: 'todo initial',
-    editpage:'no'
+    editpage:'no',
+    todo_from_server:[]
+    
+   
 }
 
 
@@ -37,6 +51,13 @@ const R_todo = (state = initialState, action) => {
                     
                     editpage:action.payload.editpage
                 })
+
+        case TODO_FROM_SERVER:
+            
+            return Object.assign( {}, state, {
+                todo_from_server: action.payload.todo_from_server,
+                
+            })
     }
 
     return state

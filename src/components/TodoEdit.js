@@ -24,13 +24,17 @@ const TodoEdit = (props) => {
        const handleSubmit = async (e) => {
 
         const {dispatch } = props;
+
+        let editId = props.match.params.todoId ;
         e.preventDefault();
 
         const editItem = props.todo.list.find(item=>item.id==editId)
 
+        console.log(editItem);
+
         editItem.name = props.form.getFieldValue('username');
 
-        console.log(editItem);
+        
 
         const presentState = [...props.todo.list,editItem]
 

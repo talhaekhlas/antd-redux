@@ -2,26 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
 import { todoAdd } from '../actions/A_todoForm';
+
 import { editPage } from '../actions/A_todoForm';
 import {Link } from "react-router-dom";
-
-
-
-
 
 
 const Todo = (props) => {
 
 
 
-    console.log('test form todo',props.form);
     const {dispatch } = props;
     
     
-
-    
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -64,7 +56,7 @@ const Todo = (props) => {
         await dispatch(todoAdd(presentState));
         console.log(presentState);
 
-        //const presentState = prevTodo.splice();
+      
     }
 
     const columns = [
@@ -93,46 +85,38 @@ const Todo = (props) => {
       ];
       const data = props.todo.list;
 
-
-    //   const { getFieldDecorator } = props.form;
+      
 
       const {todo } = props;
 
       const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = props.form;
 
-    //   dispatch(editPage('no'));
-
-    
-
-
-
-    console.log(props);
     return (
         <div>
             <br/>
            
             <Row >
                 <Col span={12} offset={6} style={{background:'#F2F6F9'}}>
-            <Form layout="inline" onSubmit={handleSubmit}>
-             
-             <Form.Item >
-               {getFieldDecorator('username', {
-                 rules: [{ required: false, message: 'Please input your username!' }],
-                 initialValue:''
-               })(
-                 <Input
-                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                   placeholder="Username" 
-                 />,
-               )}
-             </Form.Item>
-             
-             <Form.Item>
-               <Button type="primary" htmlType="submit" >
-                 Add Todo
-               </Button>
-             </Form.Item>
-           </Form> 
+                  <Form layout="inline" onSubmit={handleSubmit}>
+                    
+                    <Form.Item >
+                      {getFieldDecorator('username', {
+                        rules: [{ required: false, message: 'Please input your username!' }],
+                        initialValue:''
+                      })(
+                        <Input
+                          prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                          placeholder="Username" 
+                        />,
+                      )}
+                    </Form.Item>
+                    
+                    <Form.Item>
+                      <Button type="primary" htmlType="submit" >
+                        Add Todo
+                      </Button>
+                    </Form.Item>
+                  </Form> 
                 </Col>
 
                 <Col span={12} offset={6}>

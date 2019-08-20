@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Home from '../components/Home'
 import Todo from '../components/Todo'
+import TodoServer from '../components/TodoServer'
 import TableSpan from '../components/TableSpan'
 import TodoEdit from '../components/TodoEdit'
 
@@ -14,7 +15,8 @@ function BasicExample() {
         <Navbar/>
         {/* <Route exact path="/" component={Home} /> */}
         <Route exact path="/" component={TableSpan} />
-        <Route exact path="/todo" component={Todo} />
+        {/* <Route exact path="/todo" component={Todo} /> */}
+        <Route exact path="/todo" component={TodoServer} />
         <Route exact path="/todo/:todoId" component={TodoEdit} />
       </div>
     </Router>
