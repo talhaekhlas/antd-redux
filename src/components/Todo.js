@@ -127,12 +127,6 @@ const Todo = (props) => {
                 
              </Row>
 
-
-
-            
-    
-            
-            
         </div>
     );
 };

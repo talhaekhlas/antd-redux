@@ -6,14 +6,41 @@ import {Redirect} from 'react-router-dom'
 import { loadCustomer } from '../actions';
 import { todoAdd } from '../actions/A_todoForm';
 import { editPage } from '../actions/A_todoForm';
+import axios from 'axios'
 
 
-const TodoEdit = (props) => {
+const  TodoEdit = (props) => {
+
+
+
+  
 
    
+     
      const editId = props.match.params.todoId;
 
-     const {dispatch } = props;
+    //  console.log('edit id',editId);
+
+
+    //  const hamba = axios.get('http://localhost:8000/api/todo/'+editId).then(response => response.data)
+    // .then((data) => {
+
+
+    //     console.log('editable data', data);
+
+    //    //alert('hamba');
+
+    //     //dispatch(todoFromServer(data));
+      
+    //  })
+
+
+
+
+
+     
+
+        const {dispatch } = props;
 
         const prevTodo = props.todo.list;
         
@@ -34,11 +61,7 @@ const TodoEdit = (props) => {
 
         editItem.name = props.form.getFieldValue('username');
 
-        
-
         const presentState = [...props.todo.list,editItem]
-
-        
 
         console.log(props.history.push('/todo'));
         
@@ -69,7 +92,7 @@ const TodoEdit = (props) => {
             <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
               {getFieldDecorator('username', {
                 rules: [{ required: true, message: 'Please input your username!' }],
-                initialValue:editableTodo[0].name
+                initialValue:'editableTodo[0].name'
               })(
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
