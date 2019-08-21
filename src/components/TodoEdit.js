@@ -45,7 +45,11 @@ const  TodoEdit = (props) => {
         const prevTodo = props.todo.list;
         
         // difference between == and ===
-        const editableTodo = [...props.todo.todo.filter(i => i.id == props.match.params.todoId)];
+
+        console.log('editable data',props.todo);
+        //const editableTodo = [...props.todo.todo_from_server.data.filter(i => i.id == props.match.params.todoId)];
+
+        //console.log('editable data',editableTodo);
 
        
        const handleSubmit = async (e) => {
