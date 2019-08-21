@@ -12,16 +12,8 @@ class TodoServer extends Component {
     componentDidMount(){
     const {dispatch } = this.props;
 
-
+    dispatch(todoFromServer());
    
-    axios.get('http://localhost:8000/api/todo').then(response => response.data)
-    .then((data) => {
-
-        
-        dispatch(todoFromServer(data));
-      
-     })
-        
     }
 
 

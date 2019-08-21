@@ -23,6 +23,7 @@ const initialState = {
             name: 'todo number two'
         },
     ],
+    name: 'Sadik',
     address: 'todo initial',
     editpage:'no',
     todo_from_server:[]

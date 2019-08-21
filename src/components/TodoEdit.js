@@ -22,17 +22,31 @@ const  TodoEdit = (props) => {
     //  console.log('edit id',editId);
 
 
-    //  const hamba = axios.get('http://localhost:8000/api/todo/'+editId).then(response => response.data)
-    // .then((data) => {
+    // const abc = new Promise( (resolve, reject) => {
+
+    
+     axios.get('http://localhost:8000/api/todo/'+editId).then(response => response.data)
+    .then((data) => {
+        // resolve(data)
 
 
-    //     console.log('editable data', data);
+        console.log('editable data', data);
 
-    //    //alert('hamba');
+       //alert('hamba');
 
-    //     //dispatch(todoFromServer(data));
+        //dispatch(todoFromServer(data));
       
-    //  })
+     })
+
+    // });
+
+
+    // Promise.all([abc]).then( values => {
+    //   console.log('values', values)
+    // })
+
+
+  
 
 
 
@@ -76,7 +90,7 @@ const  TodoEdit = (props) => {
       };
     const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = props.form;
 
-    const {todo } = props;
+    const { todo } = props;
 
     // Only show error after a field is touched.
     const usernameError = isFieldTouched('username') && getFieldError('username');
@@ -90,7 +104,10 @@ const  TodoEdit = (props) => {
     return (
         
         <div>
-           
+
+          
+
+           <p>{ todo.name }</p>
             <Form layout="inline" onSubmit={handleSubmit}>
              
             <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>

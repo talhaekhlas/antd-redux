@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const TODO_ADD = "TODO_ADD"
 export const EDIT_PAGE = "EDIT_PAGE"
 export const TODO_FROM_SERVER = "TODO_FROM_SERVER";
@@ -16,18 +18,23 @@ export const todoAdd = (prevState) => (dispatch, getState) => {
 }
 
 
-
-export const todoFromServer = (prevState) => (dispatch, getState) => {
+export const todoFromServer = () => (dispatch, getState) => {
  
-  dispatch({
-    
-    type: TODO_FROM_SERVER,
-    payload: {
-      todo_from_server: prevState,
-      address:'I am address after dispatch',
+  axios.get('http://localhost:8000/api/todo').then(response => response.data)
+  .then((data) => {
       
-    }
-  })
+    dispatch({
+    
+      type: TODO_FROM_SERVER,
+      payload: {
+        todo_from_server: data,
+        address:'I am address after dispatch',
+        
+      }
+    })
+    
+   })
+      
 }
 
 
