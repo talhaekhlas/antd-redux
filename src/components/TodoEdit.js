@@ -19,7 +19,12 @@ const  TodoEdit = (props) => {
      
      const editId = props.match.params.todoId;
 
-    //  console.log('edit id',editId);
+     const prevTodoFromServer = props.todo.todo_from_server.data;
+     console.log('prev all todo from server',prevTodoFromServer);
+
+    //  const editableTodo = prevTodoFromServer.filter(item => item.id == props.match.params.todoId);
+
+    //  console.log('ediatable todo',editableTodo);
 
 
     // const abc = new Promise( (resolve, reject) => {
@@ -30,7 +35,7 @@ const  TodoEdit = (props) => {
         // resolve(data)
 
 
-        console.log('editable data', data);
+        // console.log('editable data', data);
 
        //alert('hamba');
 
@@ -60,7 +65,7 @@ const  TodoEdit = (props) => {
         
         // difference between == and ===
 
-        console.log('editable data',props.todo);
+        // console.log('editable data',props.todo);
         //const editableTodo = [...props.todo.todo_from_server.data.filter(i => i.id == props.match.params.todoId)];
 
         //console.log('editable data',editableTodo);

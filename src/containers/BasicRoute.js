@@ -6,6 +6,7 @@ import Todo from '../components/Todo'
 import TodoServer from '../components/TodoServer'
 import TableSpan from '../components/TableSpan'
 import TodoEdit from '../components/TodoEdit'
+import TodoEditServer from '../components/TodoEditServer'
 
 function BasicExample() {
   return (
@@ -17,7 +18,8 @@ function BasicExample() {
         <Route exact path="/" component={TableSpan} />
         {/* <Route exact path="/todo" component={Todo} /> */}
         <Route exact path="/todo" component={TodoServer} />
-        <Route exact path="/todo/:todoId" component={TodoEdit} />
+        {/* <Route exact path="/todo/:todoId" component={TodoEdit} /> */}
+        <Route exact path="/todo/:todoId" component={TodoEditServer} />
       </div>
     </Router>
   );
