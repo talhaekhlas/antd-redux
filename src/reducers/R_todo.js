@@ -26,7 +26,9 @@ const initialState = {
     name: 'Sadik',
     address: 'todo initial',
     editpage:'no',
-    todo_from_server:[]
+    todo_from_server: {
+        data: []
+    }
     
    
 }

@@ -11,6 +11,7 @@ function Navbar() {
     //   onClick={this.handleClick}
     //   selectedKeys={[this.state.current]}
       mode="horizontal"
+      theme="dark"
     >
       <Menu.Item key="mail">
         <NavLink to="/"><Icon type="home" />Home</NavLink>
@@ -18,6 +19,9 @@ function Navbar() {
 
       <Menu.Item key="app">
         <NavLink to="/todo"><Icon type="unordered-list" />Todo</NavLink>
+      </Menu.Item>
+      <Menu.Item key="user-registration">
+        <NavLink to="/user-registration"><Icon type="unordered-list" />User Loign</NavLink>
       </Menu.Item>
       
 

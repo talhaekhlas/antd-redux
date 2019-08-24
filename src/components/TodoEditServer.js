@@ -58,10 +58,10 @@ class TodoEditServer extends Component {
 
       
 
-        if(prevTodo){
+        // if(prevTodo){
             let editableTodo = prevTodo.find(x => x.id == editId)
-            todoName = editableTodo.name;
-        }
+            todoName = editableTodo ? editableTodo.name : '';
+        // }
 
         
         
