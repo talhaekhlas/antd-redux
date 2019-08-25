@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 import { Menu, Icon } from "antd";
 
@@ -20,16 +20,17 @@ function Navbar() {
       <Menu.Item key="app">
         <NavLink to="/todo"><Icon type="unordered-list" />Todo</NavLink>
       </Menu.Item>
-      <Menu.Item key="user-registration">
-        <NavLink to="/user-registration"><Icon type="unordered-list" />User Loign</NavLink>
-      </Menu.Item>
+
       
 
-      <SubMenu
+     
+      
+
+      {localStorage.getItem('token')?<SubMenu style={{float: 'right'}}
         title={
           <span className="submenu-title-wrapper">
-            <Icon type="setting" />
-            Navigation Three - Submenu
+            <Icon type="login" />
+            Login
           </span>
         }
       >
@@ -41,12 +42,16 @@ function Navbar() {
           <Menu.Item key="setting:3">Option 3</Menu.Item>
           <Menu.Item key="setting:4">Option 4</Menu.Item>
         </Menu.ItemGroup>
-      </SubMenu>
-      <Menu.Item key="alipay">
-        <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-          Navigation Four - Link
-        </a>
+        </SubMenu>:null}
+
+      <Menu.Item key="login" style={{float: 'right'}} >
+        <NavLink to="/login"><Icon type="unordered-list" />Login</NavLink>
       </Menu.Item>
+
+      <Menu.Item key="register" style={{float: 'right'}} >
+        <NavLink to="/register"><Icon type="unordered-list" />Register</NavLink>
+      </Menu.Item>
+      
     </Menu>
   );
 }

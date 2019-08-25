@@ -31,15 +31,18 @@ class Layouts extends React.Component {
         <Layout >
           {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
           <Content style={{ margin: '0 16px', }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <Breadcrumb style={{ margin: '16px' }}>
+              {/* <Breadcrumb.Item>User</Breadcrumb.Item> */}
+              {/* <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
             </Breadcrumb>
-            <div style={{ padding: 24, background: '#fff', minHeight: 450 }}>Bill is a cat.</div>
-
+            <div style={{ padding: 24, background: '#fff', minHeight: 490 }}>
             <BasicRoute/>
+              
+            </div>
+
+            
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+          <Footer style={{ textAlign: 'center' }}><b>Todo App ©2018 Developed by Ant UED</b> </Footer>
         </Layout>
 
         </Layout>
