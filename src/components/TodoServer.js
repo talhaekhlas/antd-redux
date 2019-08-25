@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
-import { todoAdd } from '../actions/A_todoForm';
+
 import { todoFromServer } from '../actions/A_todoForm';
-import { editPage } from '../actions/A_todoForm';
+
 import {Link } from "react-router-dom";
 import axios from 'axios'
 

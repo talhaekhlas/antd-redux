@@ -6,6 +6,10 @@ import { Menu, Icon } from "antd";
 const { SubMenu } = Menu;
 
 function Navbar() {
+
+  const logout = ()=>{
+
+  }
   return (
     <Menu
     //   onClick={this.handleClick}
@@ -29,24 +33,21 @@ function Navbar() {
       {localStorage.getItem('token')?<SubMenu style={{float: 'right'}}
         title={
           <span className="submenu-title-wrapper">
-            <Icon type="login" />
-            Login
+            
+            Test Name
           </span>
         }
       >
-        <Menu.ItemGroup title="Item 1">
-          <Menu.Item key="setting:1">Option 1</Menu.Item>
-          <Menu.Item key="setting:2">Option 2</Menu.Item>
-        </Menu.ItemGroup>
-        <Menu.ItemGroup title="Item 2">
-          <Menu.Item key="setting:3">Option 3</Menu.Item>
-          <Menu.Item key="setting:4">Option 4</Menu.Item>
-        </Menu.ItemGroup>
-        </SubMenu>:null}
-
-      <Menu.Item key="login" style={{float: 'right'}} >
+        
+          <Menu.Item key="setting:1"><Icon type="login" /> Logout</Menu.Item>
+          
+       
+        
+        </SubMenu>:<Menu.Item key="login" style={{float: 'right'}} >
         <NavLink to="/login"><Icon type="unordered-list" />Login</NavLink>
-      </Menu.Item>
+      </Menu.Item>}
+
+      
 
       <Menu.Item key="register" style={{float: 'right'}} >
         <NavLink to="/register"><Icon type="unordered-list" />Register</NavLink>

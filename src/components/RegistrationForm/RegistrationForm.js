@@ -1,13 +1,23 @@
 import React from "react";
+import { connect } from 'react-redux'
 import {Form,Input,Tooltip,Icon,Cascader,Select,Row,Col,Checkbox,Button,AutoComplete,} from 'antd';
 import {Link } from "react-router-dom";
 import axios from 'axios'
+import {userAdd} from '../../actions/UserRegistration/UserRegistration'
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
   
   
   
   class RegistrationForm extends React.Component {
+
+    componentDidMount(){
+
+      console.log('user props',this.props.user_info);
+
+    }
+
+
     state = {
       confirmDirty: false,
       autoCompleteResult: [],
@@ -15,32 +25,17 @@ const AutoCompleteOption = AutoComplete.Option;
   
     handleSubmit = e => {
       e.preventDefault();
-      const formData = {
-          'name':this.props.form.getFieldValue('name'),
-          'email':this.props.form.getFieldValue('email'),
-          'password':this.props.form.getFieldValue('password'),
-          'confirm_password':this.props.form.getFieldValue('confirm_password'),
-      }
-      axios.post('http://localhost:8000/api/registerTalha',formData).then(response => response.data)
-        .then((data) => {
 
-            if(data.token){
-                localStorage.setItem('token', data.token);
-            }
-
-            
-
-            console.log('Response Data',data);
-        })
-
-        console.log('Token is',localStorage.getItem('token'));
+      const {dispatch } = this.props;
+      this.props.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          dispatch(userAdd(values));
+        }
+      });
+      
 
 
-    //   this.props.form.validateFieldsAndScroll((err, values) => {
-    //     if (!err) {
-    //       console.log('Received values of form: ', values);
-    //     }
-    //   });
+      
     };
   
     handleConfirmBlur = e => {
@@ -65,15 +60,7 @@ const AutoCompleteOption = AutoComplete.Option;
       callback();
     };
   
-    handleWebsiteChange = value => {
-      let autoCompleteResult;
-      if (!value) {
-        autoCompleteResult = [];
-      } else {
-        autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-      }
-      this.setState({ autoCompleteResult });
-    };
+   
   
     render() {
       const { getFieldDecorator } = this.props.form;
@@ -103,10 +90,7 @@ const AutoCompleteOption = AutoComplete.Option;
       };
       
   
-      const websiteOptions = autoCompleteResult.map(website => (
-        <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-      ));
-  
+     
       return (
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
 
@@ -169,13 +153,6 @@ const AutoCompleteOption = AutoComplete.Option;
             })(<Input.Password onBlur={this.handleConfirmBlur} />)}
           </Form.Item>
 
-
-          
-         
-          
-          
-          
-          
           <Form.Item {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">
               Register
@@ -186,6 +163,16 @@ const AutoCompleteOption = AutoComplete.Option;
     }
   }
   
-  const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
   
-  export default WrappedRegistrationForm;
+  const mapStateToProps = state => ({
+    user_info: state.userReducer.user_info,
+    todo:state.R_todo
+    
+})
+
+const WrappedRegistrationForm = Form.create({ name: 'horizontal_login' })(RegistrationForm);
+
+export default connect(mapStateToProps)(WrappedRegistrationForm)
+
+
+  
