@@ -1,6 +1,6 @@
 import React , { Fragment } from "react";
 import ReactDOM from 'react-dom';
-import Sidebar from '../common/Sidebar'
+import Sidebar from './Sidebar'
 import Navbar from './Navbar'
 // import 'antd/dist/antd.css';
 // import './index.css';
