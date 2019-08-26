@@ -1,4 +1,4 @@
-import { USER_REGISTRATION } from '../../actions/UserRegistration/UserRegistration'
+import { USER_REGISTRATION } from '../../actions/UserRegistration/UserRegistrationAction'
 
 const initialState = {
     user_info: {

@@ -1,19 +1,22 @@
 import React from "react";
-import {NavLink } from "react-router-dom";
+import {NavLink,withRouter } from "react-router-dom";
 
 import { Menu, Icon } from "antd";
 
 const { SubMenu } = Menu;
 
-function Navbar() {
+const Navbar= withRouter(
+  ({ history })=> {
+
+  console.log('props at navbar',history);
 
   const logout = ()=>{
-
+    localStorage.removeItem('token')
+    history.push("/")
   }
   return (
     <Menu
-    //   onClick={this.handleClick}
-    //   selectedKeys={[this.state.current]}
+    
       mode="horizontal"
       theme="dark"
     >
@@ -24,12 +27,6 @@ function Navbar() {
       <Menu.Item key="app">
         <NavLink to="/todo"><Icon type="unordered-list" />Todo</NavLink>
       </Menu.Item>
-
-      
-
-     
-      
-
       {localStorage.getItem('token')?<SubMenu style={{float: 'right'}}
         title={
           <span className="submenu-title-wrapper">
@@ -39,7 +36,7 @@ function Navbar() {
         }
       >
         
-          <Menu.Item key="setting:1"><Icon type="login" /> Logout</Menu.Item>
+        <Menu.Item key="setting:1" onClick={()=>logout()}><Icon type="login" /> Logout</Menu.Item>
           
        
         
@@ -55,6 +52,6 @@ function Navbar() {
       
     </Menu>
   );
-}
+})
 
 export default Navbar;

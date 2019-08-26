@@ -6,6 +6,7 @@ import TodoEditServer from '../components/TodoEditServer'
 import RegistrationForm from '../components/RegistrationForm/RegistrationForm'
 import LoginForm from '../components/RegistrationForm/LoginForm'
 import PrivateRouteExample from '../components/PrivateRouteExample/PrivateRouteExample'
+import PrivateRoute from '../components/PrivateRouteExample/PrivateRoute'
 
 function BasicExample() {
   return (
@@ -17,7 +18,7 @@ function BasicExample() {
         <Route exact path="/todo/:todoId" component={TodoEditServer} />
         <Route exact path="/register" component={RegistrationForm} />
         {/* <Route exact path="/login" component={LoginForm} /> */}
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={LoginForm} />
         <Route exact path="/private-route-example" component={PrivateRouteExample} />
         <PrivateRoute path="/todo" component={Protected} />
     </Fragment>
@@ -25,25 +26,7 @@ function BasicExample() {
   );
 }
 
-function PrivateRoute({ component: Component, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        fakeAuth.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
+
 
 
 const fakeAuth = {

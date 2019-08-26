@@ -1,6 +1,6 @@
 import React from "react";
 import {Form,Input,Tooltip,Icon,Cascader,Select,Row,Col,Checkbox,Button,AutoComplete,} from 'antd';
-import {Link } from "react-router-dom";
+import {Link,Redirect } from "react-router-dom";
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
@@ -12,9 +12,17 @@ const AutoCompleteOption = AutoComplete.Option;
       confirmDirty: false,
       autoCompleteResult: [],
     };
+
+    
   
     handleSubmit = e => {
       e.preventDefault();
+
+     
+
+      localStorage.setItem('token','test_token')
+
+
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
@@ -36,23 +44,9 @@ const AutoCompleteOption = AutoComplete.Option;
       }
     };
   
-    validateToNextPassword = (rule, value, callback) => {
-      const { form } = this.props;
-      if (value && this.state.confirmDirty) {
-        form.validateFields(['confirm'], { force: true });
-      }
-      callback();
-    };
+    
   
-    handleWebsiteChange = value => {
-      let autoCompleteResult;
-      if (!value) {
-        autoCompleteResult = [];
-      } else {
-        autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-      }
-      this.setState({ autoCompleteResult });
-    };
+   
   
     render() {
       const { getFieldDecorator } = this.props.form;
@@ -85,8 +79,16 @@ const AutoCompleteOption = AutoComplete.Option;
       const websiteOptions = autoCompleteResult.map(website => (
         <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
       ));
+
+      const checkLocalStorage = localStorage.getItem('token')
+
+      let { from } = this.props.location.state || { from: { pathname: "/todo" } };
+      // let { redirectToReferrer } = this.state;
+        if (checkLocalStorage) return <Redirect to={from} />;
   
       return (
+        
+
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
 
         

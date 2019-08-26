@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {Form,Input,Tooltip,Icon,Cascader,Select,Row,Col,Checkbox,Button,AutoComplete,} from 'antd';
 import {Link } from "react-router-dom";
 import axios from 'axios'
-import {userAdd} from '../../actions/UserRegistration/UserRegistration'
+import {userAdd} from '../../actions/UserRegistration/UserRegistrationAction'
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
   
