@@ -1,8 +1,7 @@
-import React, { Fragment,Component } from "react";
-import { BrowserRouter as Router, Route, Link,Redirect,withRouter } from "react-router-dom";
+import React, { Fragment } from "react";
+import {Route } from "react-router-dom";
 import Home from '../components/Home'
 import TodoServer from '../components/TodoServer'
-import TodoEditServer from '../components/TodoEditServer'
 import RegistrationForm from '../components/RegistrationForm/RegistrationForm'
 import LoginForm from '../components/RegistrationForm/LoginForm'
 import PrivateRouteExample from '../components/PrivateRouteExample/PrivateRouteExample'
@@ -12,15 +11,14 @@ function BasicExample() {
   return (
     
     <Fragment>
-        <AuthButton />
+        {/* <AuthButton /> */}
         <Route exact path="/" component={Home} />
-        <Route exact path="/todo" component={TodoServer} />
-        <Route exact path="/todo/:todoId" component={TodoEditServer} />
+        {/* <Route exact path="/todo" component={TodoServer} /> */}
+        {/* <Route exact path="/todo/:todoId" component={TodoEditServer} /> */}
         <Route exact path="/register" component={RegistrationForm} />
-        {/* <Route exact path="/login" component={LoginForm} /> */}
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/private-route-example" component={PrivateRouteExample} />
-        <PrivateRoute path="/todo" component={Protected} />
+        <PrivateRoute exact path="/todo" component={TodoServer} />
     </Fragment>
     
   );
@@ -42,49 +40,49 @@ const fakeAuth = {
 };
 
 
-class Login extends Component {
-  state = { redirectToReferrer: false };
+// class Login extends Component {
+//   state = { redirectToReferrer: false };
 
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
-  };
+//   login = () => {
+//     fakeAuth.authenticate(() => {
+//       this.setState({ redirectToReferrer: true });
+//     });
+//   };
 
-  render() {
-    let { from } = this.props.location.state || { from: { pathname: "/" } };
-    let { redirectToReferrer } = this.state;
+//   render() {
+//     let { from } = this.props.location.state || { from: { pathname: "/" } };
+//     let { redirectToReferrer } = this.state;
 
-    if (redirectToReferrer) return <Redirect to={from} />;
+//     if (redirectToReferrer) return <Redirect to={from} />;
 
-    return (
-      <div>
-        <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
-    );
-  }
-}
+//     return (
+//       <div>
+//         <p>You must log in to view the page at {from.pathname}</p>
+//         <button onClick={this.login}>Log in</button>
+//       </div>
+//     );
+//   }
+// }
 
 
 
-const AuthButton = withRouter(
-  ({ history }) =>
-    fakeAuth.isAuthenticated ? (
-      <p>
-        Welcome!{" "}
-        <button
-          onClick={() => {
-            fakeAuth.signout(() => history.push("/"));
-          }}
-        >
-          Sign out
-        </button>
-      </p>
-    ) : (
-      <p>You are not logged in.</p>
-    )
-);
+// const AuthButton = withRouter(
+//   ({ history }) =>
+//     fakeAuth.isAuthenticated ? (
+//       <p>
+//         Welcome!{" "}
+//         <button
+//           onClick={() => {
+//             fakeAuth.signout(() => history.push("/"));
+//           }}
+//         >
+//           Sign out
+//         </button>
+//       </p>
+//     ) : (
+//       <p>You are not logged in.</p>
+//     )
+// );
 
 
 

@@ -55,6 +55,8 @@ const AuthButton = withRouter(
 );
 
 function PrivateRoute({ component: Component, ...rest }) {
+
+  
   return (
     <Route
       {...rest}

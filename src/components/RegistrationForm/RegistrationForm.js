@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux'
-import {Form,Input,Tooltip,Icon,Cascader,Select,Row,Col,Checkbox,Button,AutoComplete,} from 'antd';
+import {Form,Input,Tooltip,Select,Button,AutoComplete,} from 'antd';
 import {Link } from "react-router-dom";
 import axios from 'axios'
 import {userAdd} from '../../actions/UserRegistration/UserRegistrationAction'

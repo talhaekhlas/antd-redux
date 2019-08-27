@@ -1,5 +1,6 @@
 import axios from 'axios'
 export const USER_REGISTRATION = 'USER_REGISTRATION'
+export const LOGIN_CHECK = 'LOGIN_CHECK'
 
 export const userAdd = (formData) => (dispatch, getState) => {
 
@@ -18,5 +19,19 @@ export const userAdd = (formData) => (dispatch, getState) => {
       })
       
      })
+        
+  }
+
+  export const loginCheck = (value) => (dispatch, getState) => {
+
+      dispatch({
+      
+        type: LOGIN_CHECK,
+        payload: {
+          'login_check': value,
+        }
+      })
+      
+     
         
   }

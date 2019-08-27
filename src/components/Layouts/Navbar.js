@@ -1,17 +1,21 @@
 import React from "react";
 import {NavLink,withRouter } from "react-router-dom";
+import { connect } from 'react-redux'
+import { loginCheck } from '../../actions/UserRegistration/UserRegistrationAction';
 
 import { Menu, Icon } from "antd";
 
 const { SubMenu } = Menu;
 
 const Navbar= withRouter(
-  ({ history })=> {
+  ({ history,user,dispatch })=> {
 
-  console.log('props at navbar',history);
+
+  console.log('user form navbar',user)
 
   const logout = ()=>{
-    localStorage.removeItem('token')
+    
+    dispatch(loginCheck('no'));
     history.push("/")
   }
   return (
@@ -27,7 +31,7 @@ const Navbar= withRouter(
       <Menu.Item key="app">
         <NavLink to="/todo"><Icon type="unordered-list" />Todo</NavLink>
       </Menu.Item>
-      {localStorage.getItem('token')?<SubMenu style={{float: 'right'}}
+      {user.login_check==='yes'?<SubMenu style={{float: 'right'}}
         title={
           <span className="submenu-title-wrapper">
             
@@ -54,4 +58,13 @@ const Navbar= withRouter(
   );
 })
 
-export default Navbar;
+
+const mapStateToProps = state => ({
+  user:state.userReducer
+  
+})
+
+
+export default connect(mapStateToProps)(Navbar)
+
+

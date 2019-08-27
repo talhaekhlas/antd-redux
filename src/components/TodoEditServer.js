@@ -4,17 +4,15 @@ import axios from 'axios'
 
 import { connect } from 'react-redux'
 
-import { loadCustomer } from '../actions';
-import { todoAdd } from '../actions/A_todoForm';
-import { editPage } from '../actions/A_todoForm';
-
 import { todoFromServer } from '../actions/A_todoForm';
+
 
 class TodoEditServer extends Component {
 
     componentDidMount(){
         const {dispatch } = this.props;
         dispatch(todoFromServer());
+        
     }
 
 
@@ -32,7 +30,7 @@ class TodoEditServer extends Component {
         axios.put('http://localhost:8000/api/todo/'+editId,updatedTodo).then(response => response.data)
         .then((dataResponse) => {
 
-            console.log(dataResponse);
+            
         })
 
         const {dispatch } = this.props;
@@ -95,7 +93,8 @@ class TodoEditServer extends Component {
 
 
 const mapStateToProps = state => ({
-    todo:state.R_todo
+    todo:state.R_todo,
+    
     
 })
 

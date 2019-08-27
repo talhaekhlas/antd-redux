@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import {Link } from "react-router-dom";
 
 const { Sider } = Layout;
@@ -11,7 +11,7 @@ class Sidebar extends Component {
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
+    
     this.setState({ collapsed });
   };
     render() {

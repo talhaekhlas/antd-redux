@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
 
 import { todoFromServer } from '../actions/A_todoForm';
+import { loginCheck } from '../actions/UserRegistration/UserRegistrationAction';
 
 import {Link } from "react-router-dom";
 import axios from 'axios'
@@ -13,6 +14,7 @@ class TodoServer extends Component {
     const {dispatch } = this.props;
 
     dispatch(todoFromServer());
+    dispatch(loginCheck('yes'));
    
     }
 

@@ -1,12 +1,10 @@
 import React from "react";
-import {Form,Input,Tooltip,Icon,Cascader,Select,Row,Col,Checkbox,Button,AutoComplete,} from 'antd';
+import {Form,Input,Button} from 'antd';
 import {Link,Redirect } from "react-router-dom";
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+import { connect } from 'react-redux'
+import { loginCheck } from '../../actions/UserRegistration/UserRegistrationAction';
 
-  
-  
-  
+
   class RegistrationForm extends React.Component {
     state = {
       confirmDirty: false,
@@ -18,16 +16,18 @@ const AutoCompleteOption = AutoComplete.Option;
     handleSubmit = e => {
       e.preventDefault();
 
+      const {dispatch } = this.props;
+      dispatch(loginCheck('yes'));
+
      
+      // localStorage.setItem('token','test_token_hamba')
 
-      localStorage.setItem('token','test_token')
 
-
-      this.props.form.validateFieldsAndScroll((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
-        }
-      });
+      // this.props.form.validateFieldsAndScroll((err, values) => {
+      //   if (!err) {
+      //     console.log('Received values of form: ', values);
+      //   }
+      // });
     };
   
     handleConfirmBlur = e => {
@@ -35,20 +35,14 @@ const AutoCompleteOption = AutoComplete.Option;
       this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     };
   
-    compareToFirstPassword = (rule, value, callback) => {
-      const { form } = this.props;
-      if (value && value !== form.getFieldValue('password')) {
-        callback('Two passwords that you enter is inconsistent!');
-      } else {
-        callback();
-      }
-    };
+    
   
     
   
    
-  
+    
     render() {
+      
       const { getFieldDecorator } = this.props.form;
       const { autoCompleteResult } = this.state;
   
@@ -74,17 +68,17 @@ const AutoCompleteOption = AutoComplete.Option;
           },
         },
       };
-      
-  
-      const websiteOptions = autoCompleteResult.map(website => (
-        <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-      ));
 
+
+     
       const checkLocalStorage = localStorage.getItem('token')
 
+      const loginCheck = this.props.user.login_check;
+
       let { from } = this.props.location.state || { from: { pathname: "/todo" } };
-      // let { redirectToReferrer } = this.state;
-        if (checkLocalStorage) return <Redirect to={from} />;
+
+      
+      if (loginCheck==='yes') return <Redirect to={from} />;
   
       return (
         
@@ -131,6 +125,17 @@ const AutoCompleteOption = AutoComplete.Option;
     }
   }
   
-  const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
+  // const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
   
-  export default WrappedRegistrationForm;
+  // export default WrappedRegistrationForm;
+
+
+const mapStateToProps = state => ({
+    user:state.userReducer
+    
+})
+
+const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(RegistrationForm);
+
+
+export default connect(mapStateToProps)(WrappedHorizontalLoginForm)

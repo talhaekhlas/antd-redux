@@ -1,15 +1,13 @@
 import React , { Fragment } from "react";
-import ReactDOM from 'react-dom';
+
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
-// import 'antd/dist/antd.css';
-// import './index.css';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Breadcrumb} from 'antd';
 
 import BasicRoute from '../../containers/BasicRoute'
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Content, Footer } = Layout;
+
 
 class Layouts extends React.Component {
   state = {
@@ -17,7 +15,7 @@ class Layouts extends React.Component {
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
+    
     this.setState({ collapsed });
   };
 
