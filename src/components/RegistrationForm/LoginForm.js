@@ -20,7 +20,7 @@ import { loginCheck } from '../../actions/UserRegistration/UserRegistrationActio
       dispatch(loginCheck('yes'));
 
      
-      // localStorage.setItem('token','test_token_hamba')
+      localStorage.setItem('token','test_token_hamba')
 
 
       // this.props.form.validateFieldsAndScroll((err, values) => {
@@ -78,7 +78,7 @@ import { loginCheck } from '../../actions/UserRegistration/UserRegistrationActio
       let { from } = this.props.location.state || { from: { pathname: "/todo" } };
 
       
-      if (loginCheck==='yes') return <Redirect to={from} />;
+      if (checkLocalStorage) return <Redirect to={from} />;
   
       return (
         

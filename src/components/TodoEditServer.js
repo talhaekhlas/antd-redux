@@ -3,6 +3,7 @@ import { Form, Icon, Input, Button } from 'antd';
 import axios from 'axios'
 
 import { connect } from 'react-redux'
+import {withRouter } from "react-router-dom";
 
 import { todoFromServer } from '../actions/A_todoForm';
 
@@ -101,4 +102,4 @@ const mapStateToProps = state => ({
 const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(TodoEditServer);
 
 
-export default connect(mapStateToProps)(WrappedHorizontalLoginForm)
+export default withRouter(connect(mapStateToProps)(WrappedHorizontalLoginForm))

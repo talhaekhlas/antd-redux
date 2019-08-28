@@ -10,11 +10,8 @@ const { SubMenu } = Menu;
 const Navbar= withRouter(
   ({ history,user,dispatch })=> {
 
-
-  console.log('user form navbar',user)
-
   const logout = ()=>{
-    
+    localStorage.removeItem('token')
     dispatch(loginCheck('no'));
     history.push("/")
   }

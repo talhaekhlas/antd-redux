@@ -23,17 +23,18 @@ const AutoCompleteOption = AutoComplete.Option;
       autoCompleteResult: [],
     };
   
-    handleSubmit = e => {
+    handleSubmit = (e) => {
       e.preventDefault();
 
       const {dispatch } = this.props;
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          dispatch(userAdd(values));
+          
+          console.log('check',this.props)
+          dispatch(userAdd(values,this.props));
+          
         }
       });
-      
-
 
       
     };
@@ -76,6 +77,7 @@ const AutoCompleteOption = AutoComplete.Option;
           sm: { span: 10 },
         },
       };
+
       const tailFormItemLayout = {
         wrapperCol: {
           xs: {
@@ -114,6 +116,7 @@ const AutoCompleteOption = AutoComplete.Option;
 
           <Form.Item label="E-mail">
             {getFieldDecorator('email', {
+              initialValue:'@gmail.com',
               rules: [
                 {
                   type: 'email',

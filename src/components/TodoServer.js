@@ -5,7 +5,7 @@ import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
 import { todoFromServer } from '../actions/A_todoForm';
 import { loginCheck } from '../actions/UserRegistration/UserRegistrationAction';
 
-import {Link } from "react-router-dom";
+import {Link,withRouter } from "react-router-dom";
 import axios from 'axios'
 
 class TodoServer extends Component {
@@ -165,4 +165,4 @@ const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(Tod
 
 //export default connect(mapStateToProps)(TodoForm)
 
-export default connect(mapStateToProps)(WrappedHorizontalLoginForm)
+export default withRouter(connect(mapStateToProps)(WrappedHorizontalLoginForm))

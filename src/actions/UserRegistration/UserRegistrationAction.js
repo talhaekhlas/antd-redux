@@ -1,14 +1,15 @@
+import React from 'react';
 import axios from 'axios'
 export const USER_REGISTRATION = 'USER_REGISTRATION'
 export const LOGIN_CHECK = 'LOGIN_CHECK'
 
-export const userAdd = (formData) => (dispatch, getState) => {
+export const userAdd = (formData,props) => (dispatch, getState) => {
 
     
     axios.post('http://localhost:8000/api/registerTalha',formData).then(response => response.data)
     .then((data) => {
 
-        console.log('response after submit',data);
+      console.log('user after submit userRegistrationAction',data);
         
       dispatch({
       
@@ -19,7 +20,12 @@ export const userAdd = (formData) => (dispatch, getState) => {
       })
       
      })
-        
+
+     props.history.push('/login')
+
+     console.log('userRegistrationAction',props);
+
+   
   }
 
   export const loginCheck = (value) => (dispatch, getState) => {
