@@ -69,11 +69,12 @@ const AutoCompleteOption = AutoComplete.Option;
       const { form } = this.props;
 
       const {dispatch } = this.props;
-       dispatch(duplicateCheck(value));
 
+       
+      dispatch(duplicateCheck(value));
+       
       
-
-      console.log('form state',this.props.user_info.duplicate_check);
+      console.log('from registration form',this.props.user_info.duplicate_check);
       
 
 

@@ -50,8 +50,8 @@ export const userAdd = (formData,props) => (dispatch, getState) => {
     axios.get('http://localhost:8000/api/duplicateCheck?email='+value).then(response => response.data)
     .then((data) => {
 
-      console.log('user after submit userRegistrationAction',data);
-        
+     
+      
       dispatch({
       
         type: DUPLICATE_CHECK,
