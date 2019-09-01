@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios'
 export const USER_REGISTRATION = 'USER_REGISTRATION'
 export const LOGIN_CHECK = 'LOGIN_CHECK'
+export const DUPLICATE_CHECK = 'DUPLICATE_CHECK'
 
 export const userAdd = (formData,props) => (dispatch, getState) => {
 
@@ -41,3 +42,26 @@ export const userAdd = (formData,props) => (dispatch, getState) => {
      
         
   }
+
+
+  export const duplicateCheck = (value) => (dispatch, getState) => {
+
+
+    axios.get('http://localhost:8000/api/duplicateCheck?email='+value).then(response => response.data)
+    .then((data) => {
+
+      console.log('user after submit userRegistrationAction',data);
+        
+      dispatch({
+      
+        type: DUPLICATE_CHECK,
+        payload: {
+          duplicate_check: data,
+        }
+      })
+      
+     })
+
+    
+      
+}

@@ -1,5 +1,6 @@
 import { USER_REGISTRATION } from '../../actions/UserRegistration/UserRegistrationAction'
 import { LOGIN_CHECK } from '../../actions/UserRegistration/UserRegistrationAction'
+import { DUPLICATE_CHECK } from '../../actions/UserRegistration/UserRegistrationAction'
 
 const initialState = {
     user_info: {
@@ -10,7 +11,8 @@ const initialState = {
         }
 
     },
-    login_check:'no'
+    login_check:'no',
+    duplicate_check:'no'
 
 }
 
@@ -24,6 +26,11 @@ export const userReducer = (state = initialState, action) => {
         case LOGIN_CHECK:
             return Object.assign( {}, state, {
                 login_check: action.payload.login_check
+            })
+
+        case DUPLICATE_CHECK:
+            return Object.assign( {}, state, {
+                duplicate_check: action.payload.duplicate_check
             })
     }
 

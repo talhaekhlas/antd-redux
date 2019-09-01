@@ -4,6 +4,7 @@ import {Form,Input,Tooltip,Select,Button,AutoComplete,} from 'antd';
 import {Link } from "react-router-dom";
 import axios from 'axios'
 import {userAdd} from '../../actions/UserRegistration/UserRegistrationAction'
+import { duplicateCheck } from '../../actions/UserRegistration/UserRegistrationAction';
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
   
@@ -30,8 +31,8 @@ const AutoCompleteOption = AutoComplete.Option;
       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           
-          console.log('check',this.props)
-          dispatch(userAdd(values,this.props));
+          console.log('check',values)
+          // dispatch(userAdd(values,this.props));
           
         }
       });
@@ -46,6 +47,7 @@ const AutoCompleteOption = AutoComplete.Option;
   
     compareToFirstPassword = (rule, value, callback) => {
       const { form } = this.props;
+      
       if (value && value !== form.getFieldValue('password')) {
         callback('Two passwords that you enter is inconsistent!');
       } else {
@@ -54,11 +56,32 @@ const AutoCompleteOption = AutoComplete.Option;
     };
   
     validateToNextPassword = (rule, value, callback) => {
+
+     
       const { form } = this.props;
       if (value && this.state.confirmDirty) {
         form.validateFields(['confirm'], { force: true });
       }
       callback();
+    };
+
+     customValidation = (rule, value, callback) => {
+      const { form } = this.props;
+
+      const {dispatch } = this.props;
+       dispatch(duplicateCheck(value));
+
+      
+
+      console.log('form state',this.props.user_info.duplicate_check);
+      
+
+
+      if (this.props.user_info.duplicate_check ==='duplicate') {
+        callback('Email Should be unique');
+      } else {
+        callback();
+      }
     };
   
    
@@ -94,9 +117,12 @@ const AutoCompleteOption = AutoComplete.Option;
   
      
       return (
+        
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
 
             <br/><br/><br/>
+
+            {this.props.user_info.duplicate_check}
 
         <Form.Item
             label={
@@ -106,10 +132,21 @@ const AutoCompleteOption = AutoComplete.Option;
                 
                 </Tooltip>
               </span>
-            }
+            } hasFeedback
           >
             {getFieldDecorator('name', {
-              rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
+              rules: [
+                { 
+                  required: true,
+                  pattern: new RegExp("^[a-zA-Z0-9_. ]*$"),
+                  message: "Special character not allowed"
+                },
+                { 
+                  max: 6,
+                  message: "should be less 7"
+                }
+                
+              ],
             })(<Input />)}
           </Form.Item>
 
@@ -125,6 +162,9 @@ const AutoCompleteOption = AutoComplete.Option;
                 {
                   required: true,
                   message: 'Please input your E-mail!',
+                },
+                {
+                  validator: this.customValidation,
                 },
               ],
             })(<Input />)}
@@ -168,7 +208,7 @@ const AutoCompleteOption = AutoComplete.Option;
   
   
   const mapStateToProps = state => ({
-    user_info: state.userReducer.user_info,
+    user_info: state.userReducer,
     todo:state.R_todo
     
 })
