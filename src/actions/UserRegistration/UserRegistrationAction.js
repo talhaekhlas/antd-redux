@@ -44,21 +44,31 @@ export const userAdd = (formData,props) => (dispatch, getState) => {
   }
 
 
-  export const duplicateCheck = (value) => (dispatch, getState) => {
+  export const duplicateCheck = (value,callback) => (dispatch, getState) => {
 
+    
 
-    axios.get('http://localhost:8000/api/duplicateCheck?email='+value).then(response => response.data)
-    .then((data) => {
+     axios.get('http://localhost:8000/api/duplicateCheck?email='+value).then(response => response.data)
+    .then(  (data) => {
 
      
       
-      dispatch({
+       dispatch({
       
         type: DUPLICATE_CHECK,
         payload: {
           duplicate_check: data,
         }
       })
+
+
+      if (data ==='duplicate') {
+        callback('Email Should be unique');
+      } else {
+        callback();
+      }
+
+     
       
      })
 

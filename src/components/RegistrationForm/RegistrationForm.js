@@ -65,24 +65,13 @@ const AutoCompleteOption = AutoComplete.Option;
       callback();
     };
 
-     customValidation = (rule, value, callback) => {
+     customValidation =  (rule, value, callback) => {
       const { form } = this.props;
 
       const {dispatch } = this.props;
-
        
-      dispatch(duplicateCheck(value));
-       
+      dispatch(duplicateCheck(value,callback));
       
-      console.log('from registration form',this.props.user_info.duplicate_check);
-      
-
-
-      if (this.props.user_info.duplicate_check ==='duplicate') {
-        callback('Email Should be unique');
-      } else {
-        callback();
-      }
     };
   
    
