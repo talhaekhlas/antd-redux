@@ -3,6 +3,8 @@ import React , { Fragment } from "react";
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
 import { Layout, Breadcrumb} from 'antd';
+import {withRouter } from "react-router-dom";
+import { connect } from 'react-redux'
 
 import BasicRoute from '../../containers/BasicRoute'
 
@@ -10,6 +12,7 @@ const { Content, Footer } = Layout;
 
 
 class Layouts extends React.Component {
+  
   state = {
     collapsed: false,
   };
@@ -23,6 +26,7 @@ class Layouts extends React.Component {
     return (
       <Fragment>
       <Navbar/>
+      
       <Layout>
 
         <Sidebar/> 
@@ -50,4 +54,12 @@ class Layouts extends React.Component {
   }
 }
 
-export default Layouts;
+
+const mapStateToProps = state => ({
+  
+  user_info:state.userReducer
+  
+}) 
+
+
+export default withRouter(connect(mapStateToProps)(Layouts))

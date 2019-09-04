@@ -19,8 +19,17 @@ export const todoAdd = (prevState) => (dispatch, getState) => {
 
 
 export const todoFromServer = () => (dispatch, getState) => {
+
+  const config = {
+    headers: {'Authorization': "Bearer " + localStorage.getItem('token')}
+    };
+
+   const bodyParameters = {
+    'Content-Type': "application/json",
+    'Accept': "application/json",
+   }
  
-  axios.get('http://localhost:8000/api/todo').then(response => response.data)
+  axios.get('http://localhost:8000/api/todo',config,bodyParameters).then(response => response.data)
   .then((data) => {
       
     dispatch({

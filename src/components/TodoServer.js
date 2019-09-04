@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
-
 import { todoFromServer } from '../actions/A_todoForm';
-import { loginCheck } from '../actions/UserRegistration/UserRegistrationAction';
-
 import {Link,withRouter } from "react-router-dom";
 import axios from 'axios'
 
@@ -14,7 +11,7 @@ class TodoServer extends Component {
     const {dispatch } = this.props;
 
     dispatch(todoFromServer());
-    dispatch(loginCheck('yes'));
+    
    
     }
 
@@ -58,11 +55,29 @@ class TodoServer extends Component {
 
         const {dispatch } = this.props;
 
-        axios.delete('http://localhost:8000/api/todo/'+key.id).then(response => response.data)
+        const config = {
+          headers: {'Authorization': "Bearer " + localStorage.getItem('token')}
+          };
+      
+         const bodyParameters = {
+          'Content-Type': "application/json",
+          'Accept': "application/json",
+         }
+
+        axios.delete('http://localhost:8000/api/todo/'+key.id,config,bodyParameters).then(response => response.data)
         .then((dataResponse) => {
 
+          const config = {
+            headers: {'Authorization': "Bearer " + localStorage.getItem('token')}
+            };
+        
+           const bodyParameters = {
+            'Content-Type': "application/json",
+            'Accept': "application/json",
+           }
+
           
-            axios.get('http://localhost:8000/api/todo').then(response => response.data)
+            axios.get('http://localhost:8000/api/todo',config,bodyParameters).then(response => response.data)
             .then((data) => {
 
                 dispatch(todoFromServer(data));
@@ -111,6 +126,7 @@ class TodoServer extends Component {
         const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
         return (
             <div>
+                
                 <Row >
                 <Col span={12} offset={6} style={{background:'#F2F6F9'}}>
                   <Form layout="inline" onSubmit={this.handleSubmit}>

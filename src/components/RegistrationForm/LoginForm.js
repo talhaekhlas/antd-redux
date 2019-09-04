@@ -1,6 +1,6 @@
 import React from "react";
 import {Form,Input,Button} from 'antd';
-import {Link,Redirect } from "react-router-dom";
+import {Link,Redirect,withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
 import { loginCheck } from '../../actions/UserRegistration/UserRegistrationAction';
 
@@ -13,12 +13,12 @@ import { loginCheck } from '../../actions/UserRegistration/UserRegistrationActio
 
     
   
-    handleSubmit = async(e) => {
+    handleSubmit = (e) => {
       e.preventDefault();
 
       const {dispatch } = this.props;
 
-      await this.props.form.validateFieldsAndScroll((err, values) => {
+       this.props.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           dispatch(loginCheck(values));
         }
@@ -70,11 +70,6 @@ import { loginCheck } from '../../actions/UserRegistration/UserRegistrationActio
      
       const checkLocalStorage = localStorage.getItem('token')
       
-
-      const loginCheck = this.props.user.login_check;
-
-      
-
       let { from } = this.props.location.state || { from: { pathname: "/todo" } };
 
 
@@ -143,4 +138,4 @@ const mapStateToProps = state => ({
 const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(RegistrationForm);
 
 
-export default connect(mapStateToProps)(WrappedHorizontalLoginForm)
+export default withRouter(connect(mapStateToProps)(WrappedHorizontalLoginForm))

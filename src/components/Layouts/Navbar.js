@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink,withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
-import { loginCheck } from '../../actions/UserRegistration/UserRegistrationAction';
+
 
 import { Menu, Icon } from "antd";
 
@@ -15,6 +15,8 @@ const Navbar= withRouter(
   const localStorageCheck = localStorage.getItem('token')
   const logout = ()=>{
     localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('user_id')
     // dispatch(loginCheck('no'));
     history.push("/")
   }
@@ -35,7 +37,7 @@ const Navbar= withRouter(
         title={
           <span className="submenu-title-wrapper">
             
-            Test Name 
+            {localStorage.getItem('username')}
           </span>
         }
       >

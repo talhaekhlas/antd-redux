@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux'
 import {Form,Input,Tooltip,Select,Button,AutoComplete,} from 'antd';
-import {Link } from "react-router-dom";
-import axios from 'axios'
+import {Link,withRouter } from "react-router-dom";
+
 import {userAdd} from '../../actions/UserRegistration/UserRegistrationAction'
 import { duplicateCheck } from '../../actions/UserRegistration/UserRegistrationAction';
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+
   
   
   
@@ -205,7 +204,7 @@ const AutoCompleteOption = AutoComplete.Option;
 
 const WrappedRegistrationForm = Form.create({ name: 'horizontal_login' })(RegistrationForm);
 
-export default connect(mapStateToProps)(WrappedRegistrationForm)
+export default withRouter(connect(mapStateToProps)(WrappedRegistrationForm))
 
 
   

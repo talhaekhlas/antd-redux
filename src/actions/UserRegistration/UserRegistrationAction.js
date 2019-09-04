@@ -29,10 +29,21 @@ export const userAdd = (formData,props) => (dispatch, getState) => {
    
   }
 
-  export const loginCheck = (formData) => async(dispatch, getState) => {
+  export const loginCheck = (formData) => (dispatch, getState) => {
 
-    await axios.post('http://localhost:8000/api/loginTalha',formData).then(response => response.data)
+     axios.post('http://localhost:8000/api/loginTalha',formData).then(response => response.data)
     .then((data) => {
+
+
+      if(data.token){
+        
+        localStorage.setItem('token',data.token)
+        localStorage.setItem('username',data.user.name)
+        localStorage.setItem('user_id',data.user.id)
+        console.log('token set');
+      }else{
+        console.log('login response from userRegistrationAction',data);
+      }
 
       
         
@@ -44,12 +55,7 @@ export const userAdd = (formData,props) => (dispatch, getState) => {
         }
       })
 
-      if(data.token){
-        
-        localStorage.setItem('token',data.token)
-      }else{
-        console.log('login fff response from userRegistrationAction',data);
-      }
+     
       
       
       
