@@ -13,21 +13,18 @@ import { loginCheck } from '../../actions/UserRegistration/UserRegistrationActio
 
     
   
-    handleSubmit = e => {
+    handleSubmit = async(e) => {
       e.preventDefault();
 
       const {dispatch } = this.props;
-      dispatch(loginCheck('yes'));
 
-     
-      localStorage.setItem('token','test_token_hamba')
+      await this.props.form.validateFieldsAndScroll((err, values) => {
+        if (!err) {
+          dispatch(loginCheck(values));
+        }
+      });
+      
 
-
-      // this.props.form.validateFieldsAndScroll((err, values) => {
-      //   if (!err) {
-      //     console.log('Received values of form: ', values);
-      //   }
-      // });
     };
   
     handleConfirmBlur = e => {
@@ -72,20 +69,28 @@ import { loginCheck } from '../../actions/UserRegistration/UserRegistrationActio
 
      
       const checkLocalStorage = localStorage.getItem('token')
+      
 
       const loginCheck = this.props.user.login_check;
 
+      
+
       let { from } = this.props.location.state || { from: { pathname: "/todo" } };
 
+
+      
       
       if (checkLocalStorage) return <Redirect to={from} />;
   
       return (
         
 
+        
+
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
 
-        
+         {/* {localStorage.getItem('token')}
+         {localStorage.removeItem('token')} */}
             <br/><br/><br/>
           <Form.Item label="E-mail">
             {getFieldDecorator('email', {

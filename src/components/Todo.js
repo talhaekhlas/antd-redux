@@ -90,6 +90,7 @@ const Todo = (props) => {
       const {todo } = props;
 
       const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = props.form;
+      
 
     return (
         <div>

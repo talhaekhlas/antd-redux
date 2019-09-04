@@ -10,9 +10,12 @@ const { SubMenu } = Menu;
 const Navbar= withRouter(
   ({ history,user,dispatch })=> {
 
+    console.log('user state from Navbar',user.login_check);
+  
+  const localStorageCheck = localStorage.getItem('token')
   const logout = ()=>{
     localStorage.removeItem('token')
-    dispatch(loginCheck('no'));
+    // dispatch(loginCheck('no'));
     history.push("/")
   }
   return (
@@ -28,11 +31,11 @@ const Navbar= withRouter(
       <Menu.Item key="app">
         <NavLink to="/todo"><Icon type="unordered-list" />Todo</NavLink>
       </Menu.Item>
-      {user.login_check==='yes'?<SubMenu style={{float: 'right'}}
+      {localStorageCheck?<SubMenu style={{float: 'right'}}
         title={
           <span className="submenu-title-wrapper">
             
-            Test Name
+            Test Name 
           </span>
         }
       >

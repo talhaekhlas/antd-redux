@@ -32,7 +32,7 @@ const AutoCompleteOption = AutoComplete.Option;
         if (!err) {
           
           console.log('check',values)
-          // dispatch(userAdd(values,this.props));
+          dispatch(userAdd(values,this.props));
           
         }
       });
@@ -112,7 +112,7 @@ const AutoCompleteOption = AutoComplete.Option;
 
             <br/><br/><br/>
 
-            {this.props.user_info.duplicate_check}
+            {/* {this.props.user_info.duplicate_check} */}
 
         <Form.Item
             label={
@@ -141,7 +141,7 @@ const AutoCompleteOption = AutoComplete.Option;
           </Form.Item>
 
 
-          <Form.Item label="E-mail">
+          <Form.Item label="E-mail" hasFeedback>
             {getFieldDecorator('email', {
               initialValue:'@gmail.com',
               rules: [
