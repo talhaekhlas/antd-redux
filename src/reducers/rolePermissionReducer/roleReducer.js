@@ -1,7 +1,7 @@
-import { ADD_ROLE } from '../../actions/RolePermissionAction/RoleAction'
 import { ROLE_LIST } from '../../actions/RolePermissionAction/RoleAction'
-import { LOGIN_CHECK } from '../../actions/UserRegistration/UserRegistrationAction'
-import { DUPLICATE_CHECK } from '../../actions/UserRegistration/UserRegistrationAction'
+import { ADD_ROLE } from '../../actions/RolePermissionAction/RoleAction'
+import { DELETE_ROLE } from '../../actions/RolePermissionAction/RoleAction'
+
 
 const initialState = {
     new_role: {
@@ -17,20 +17,23 @@ const initialState = {
 
 export const roleReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_ROLE:
-            return Object.assign( {}, state, {
-                new_role: action.payload
-            })
 
         case ROLE_LIST:
             return Object.assign( {}, state, {
                 role_list: action.payload
             })
 
-        case DUPLICATE_CHECK:
+        case ADD_ROLE:
             return Object.assign( {}, state, {
-                duplicate_check: action.payload.duplicate_check
+                new_role: action.payload
             })
+            
+        case DELETE_ROLE:
+            return Object.assign( {}, state, {
+                role_list: action.payload
+            })     
+
+       
     }
 
     return state

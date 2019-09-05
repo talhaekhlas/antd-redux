@@ -8,7 +8,7 @@ import { addRole } from '../../actions/RolePermissionAction/RoleAction';
 import { deleteRole } from '../../actions/RolePermissionAction/RoleAction';
 import axios from 'axios'
 
-class Role extends Component {
+class UserList extends Component {
 
     componentDidMount(){
     
@@ -153,6 +153,6 @@ const mapStateToProps = state => ({
     role_info: state.roleReducer, 
 })
 
-const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(Role);
+const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(UserList);
 
 export default withRouter(connect(mapStateToProps)(WrappedHorizontalLoginForm))
