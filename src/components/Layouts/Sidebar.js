@@ -24,6 +24,21 @@ class Sidebar extends Component {
                         
                            <Link to="/private-route-example"><Icon type="pie-chart" />Private Route</Link>
                         </Menu.Item>
+
+                        <SubMenu
+                        key="role-permission"
+                        title={
+                            <span>
+                            <Icon type="team" />
+                            <span>Role-Permission</span>
+                            </span>
+                        }
+                        >
+                        <Menu.Item key="role"><Link to="/role">Role</Link></Menu.Item>
+                        <Menu.Item key="permission"><Link to="/permission">Permission</Link></Menu.Item>
+                        </SubMenu>
+
+
                         <Menu.Item key="2">
                         <Icon type="desktop" />
                         <span>Option 2</span>
