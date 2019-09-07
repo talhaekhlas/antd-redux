@@ -34,8 +34,18 @@ class Sidebar extends Component {
                             </span>
                         }
                         >
-                        <Menu.Item key="role"><Link to="/role">Role</Link></Menu.Item>
-                        <Menu.Item key="permission"><Link to="/permission">Permission</Link></Menu.Item>
+                            <Menu.Item key="role">
+                                <Link to="/role">Role</Link>
+                            </Menu.Item>
+                            
+                            <Menu.Item key="permission">
+                                <Link to="/permission">Permission</Link>
+                            </Menu.Item>
+
+                            <Menu.Item key="role-permission-setup">
+                                <Link to="/role-permission-setup">Role Permission Setup</Link>
+                            </Menu.Item>
+
                         </SubMenu>
 
 

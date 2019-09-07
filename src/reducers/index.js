@@ -5,6 +5,7 @@ import talhaReducer from './talhaReducer'
 import R_todo from './R_todo'
 import userReducer from './user/userReducer';
 import roleReducer from './rolePermissionReducer/roleReducer';
+import permissionReducer from './rolePermissionReducer/permissionReducer';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   talhaReducer,
   R_todo,
   userReducer,
-  roleReducer
+  roleReducer,
+  permissionReducer
 })
 
 export default rootReducer

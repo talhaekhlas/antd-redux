@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
 
 import {Link,withRouter } from "react-router-dom";
-import { roleList } from '../../actions/RolePermissionAction/RoleAction';
+import { userList } from '../../actions/UserRegistration/UserListAction';
 import { addRole } from '../../actions/RolePermissionAction/RoleAction';
 import { deleteRole } from '../../actions/RolePermissionAction/RoleAction';
 import axios from 'axios'
@@ -13,50 +13,18 @@ class UserList extends Component {
     componentDidMount(){
     
       const {dispatch } = this.props;
-      console.log('form funciton',this.props.form);
-      dispatch(roleList());
+      
+      dispatch(userList());
     
    
     }
-
-   
-
-
-    handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const {dispatch } = this.props;
-
-        
-        this.props.form.validateFields((err, values) => {
-
-          if (!err) {
-            console.log('Received values of form: ', values);
-
-            dispatch(addRole(values));
-            dispatch(roleList());
-
-            this.props.form.setFieldsValue({
-              name: null,
-          });
-
-
-          }
-
-
-        });
-
-      };
-
 
     deleteItem = (data)=>{
 
         const {dispatch } = this.props;
         const roleId = data.id;
         dispatch(deleteRole(roleId));
-        
-  
-        console.log('Role delete',data)
+      
   
       }
 
@@ -65,9 +33,8 @@ class UserList extends Component {
 
     render() {
         
-        const {todo } = this.props;
-
-        const data = this.props.role_info.role_list.data;
+       
+        const data = this.props.user_list.data;
 
         const columns = [
             {
@@ -104,38 +71,10 @@ class UserList extends Component {
                 
                 
                 <Row >
-                <Col span={12} offset={6}>
-                  <Form layout="inline" onSubmit={this.handleSubmit}>
-                    
-                    <Form.Item hasFeedback>
-                      {getFieldDecorator('name', {
-                        rules: [
-                            { required: true, message: 'Please input role!' },
-                            {
-                                
-                                pattern: new RegExp("^[a-zA-Z0-9_. ]*$"),
-                                message: "Special character not allowed"
-                            },
-                        ],
-                        initialValue:''
-                      })(
-                        <Input
-                          prefix={<Icon type="cloud" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                          placeholder="Role Name" 
-                        />,
-                      )}
-                    </Form.Item>
-                    
-                    <Form.Item>
-                      <Button type="primary" htmlType="submit" >
-                      <Icon type="plus" />
-                      </Button>
-                    </Form.Item>
-                  </Form> 
-                </Col>
+               
 
                 <Col span={12} offset={6}>
-                    <h4 align="center">Role List</h4>
+                    <h4 align="center">User List</h4>
                     <Table columns={columns} dataSource={data} size="small" />
                 </Col>
 
@@ -150,7 +89,7 @@ class UserList extends Component {
 
 
 const mapStateToProps = state => ({
-    role_info: state.roleReducer, 
+    user_list: state.userReducer.user_list, 
 })
 
 const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(UserList);

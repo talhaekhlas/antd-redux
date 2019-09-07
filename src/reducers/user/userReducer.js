@@ -2,6 +2,9 @@ import { USER_REGISTRATION } from '../../actions/UserRegistration/UserRegistrati
 import { LOGIN_CHECK } from '../../actions/UserRegistration/UserRegistrationAction'
 import { DUPLICATE_CHECK } from '../../actions/UserRegistration/UserRegistrationAction'
 
+
+import { USER_LIST } from '../../actions/UserRegistration/UserListAction'
+
 const initialState = {
     user_info: {
         message:'before register',
@@ -12,7 +15,11 @@ const initialState = {
 
     },
     login_check:'no',
-    duplicate_check:'no'
+    duplicate_check:'no',
+    user_list:{
+        message:'initial message',
+        data:[]
+    }
 
 }
 
@@ -31,6 +38,11 @@ export const userReducer = (state = initialState, action) => {
         case DUPLICATE_CHECK:
             return Object.assign( {}, state, {
                 duplicate_check: action.payload.duplicate_check
+            })
+
+        case USER_LIST:
+            return Object.assign( {}, state, {
+                user_list: action.payload
             })
     }
 
