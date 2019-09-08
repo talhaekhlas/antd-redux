@@ -56,9 +56,12 @@ class RolePermissionSetup extends Component {
     }
 
 
-    handleChange_TALHA = (selectedItems_TALHA) => {
-      console.log('selected item talha',selectedItems_TALHA)
-      this.setState({ selectedItems_TALHA });
+    handleChange_TALHA = (selectedPermission) => {
+
+      console.log('form permission',selectedPermission)
+      console.log('form role test',this.props.form.getFieldValue('role'))
+      
+      
     };
 
     render() {
@@ -78,104 +81,76 @@ class RolePermissionSetup extends Component {
         const { selectedItems_TALHA } = this.state;
         const filteredOptions_TALHA = this.state.OPTIONS_TALHA.filter(item => !selectedItems_TALHA.includes(item.name));
 
-        console.log('selected talha',selectedItems_TALHA)
-        console.log('filter talha',filteredOptions_TALHA)
+        
 
         //from antd custom end
 
-        const RoleOption = role_list.data.map(item=>{
-            return <Option key={item.id}>{item.name}</Option>
-        })
-
-        const permissionOption = permission_list.data.map(item=>{
-            return <Option key={item.id}>{item.name}</Option>
-        })
-
-        
-
-
+      
         console.log('permission list',permission_list)
         console.log('role list',role_list)
+        const { getFieldDecorator } = this.props.form;
         return (
             <div>
 
+         <Form>
             <Row >
                 <Col span={12} offset={6}>
-                <b>Custom Antd Ekhlas</b>
-                <Select
-                    mode="multiple"
-                    placeholder="Inserted are removed"
-                    value={[1,2]}
-                    onChange={this.handleChange_TALHA}
-                    style={{ width: '100%' }}
-                >
-                {filteredOptions_TALHA.map(item => (
-                <Select.Option key={item.id} value={item.id}>
-                    {item.name}
-                </Select.Option>
-                ))}
-                </Select>
-                </Col>
-             </Row>
-
-             {/* <Row >
-                <Col span={12} offset={6}>
-                <b>Custom Antd Ekhlas</b>
-                <Select
-                    mode="multiple"
-                    placeholder="Inserted are removed"
-                    value={selectedItems_TALHA}
-                    onChange={this.handleChange_TALHA}
-                    style={{ width: '100%' }}
-                >
-                {filteredOptions_TALHA.map(item => (
-                <Select.Option key={item.id} value={item.id}>
-                    {item.name}
-                </Select.Option>
-                ))}
-                </Select>
-                </Col>
-             </Row> */}
-                
-             {/* <Row >
-                <Col span={12} offset={6}>
-                <b>Role Name</b>
-                <Select showSearch style={{ width: '100%' }} placeholder="Select Role" onChange={this.roleChange}>
-                    {RoleOption}
-                </Select> 
-                </Col>
-             </Row>
-             <br/>
-             <Row >
-                <Col span={12} offset={6}>
-                <b>Permission Name</b>
-                <Select  type="number" mode="tags" style={{ width: '100%' }} placeholder="Select Permission" onChange={this.permissionChange}>
-                    {permissionOption}
-                </Select> 
+               
+                <Form.Item label="Role">
+                {getFieldDecorator('role', {
+                    rules: [
+                   
+                    {
+                        required: true,
+                        message: 'Please input your E-mail!',
+                    },
+                    ],
+                })(<Select showSearch style={{ width: '100%' }} placeholder="Select Role"  onChange={this.roleChange}>
+                {role_list.data.map(item => (
+                  <Select.Option key={item.id} value={item.name}>
+                      {item.name}
+                  </Select.Option>
+                  ))}
+              </Select>)}
+                </Form.Item>
                 </Col>
              </Row>
 
              <Row >
                 <Col span={12} offset={6}>
-                <b>From antd</b>
-                <Select
+               
+                <Form.Item label="Permission">
+                {getFieldDecorator('permission', {
+                    initialValue: ["add",'hamba'],
+                    rules: [
+                   
+                    {
+                        required: true,
+                        message: 'Please input your E-mail!',
+                        
+                    },
+                    
+                    ],
+                })(<Select
                     mode="multiple"
+                    
                     placeholder="Inserted are removed"
-                    value={selectedItems}
-                    onChange={this.handleChange}
+                    
+                    onChange={this.handleChange_TALHA}
                     style={{ width: '100%' }}
                 >
-                {filteredOptions.map(item => (
-                <Select.Option key={item} value={item}>
-                    {item}
+                {permission_list.data.map(item => (
+                <Select.Option key={item.id} value={item.name}>
+                    {item.name}
                 </Select.Option>
                 ))}
-                </Select>
+                </Select>)}
+                </Form.Item>
                 </Col>
-             </Row> */}
+             </Row>
 
-             
-
+            
+             </Form>
              
             </div>
         );
