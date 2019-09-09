@@ -5,30 +5,11 @@ import {Link,withRouter } from "react-router-dom";
 import { roleList } from '../../actions/RolePermissionAction/RoleAction';
 import { permissionList } from '../../actions/RolePermissionAction/PermissionAction';
 
-const OPTIONS = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
-// const OPTIONS_TALHA = [
-//     {id:1,name:'talha'},
-//     {id:2,name:'minoti'},
-//     {id:3,name:'mishkat'},
-// ];
 
 class RolePermissionSetup extends Component {
 
 
-    state = {
-        selectedItems: [],
-        selectedItems_TALHA:[],
-        OPTIONS_TALHA:[
-            {id:1,name:'talha'},
-            {id:2,name:'minoti'},
-            {id:3,name:'mishkat'},
-        ],
-        CUSTOM_SELECTED_ITEM:[
-            {id:1,name:'talha'},
-            {id:2,name:'minoti'},
-            
-        ]
-      };
+  
     
     handleChange = selectedItems => {
           console.log('selected item',selectedItems)
@@ -48,6 +29,9 @@ class RolePermissionSetup extends Component {
     }
 
     roleChange=(value)=>{
+        const {dispatch } = this.props;
+        const roleId = data.id;
+        dispatch(deleteRole(roleId));
         console.log(`role id ${value}`);
     }
 
@@ -68,22 +52,7 @@ class RolePermissionSetup extends Component {
         const permission_list = this.props.permission_list;
         const role_list = this.props.role_list;
         const { Option } = Select;
-
-        //from antd start
-
-        const { selectedItems } = this.state;
-        const filteredOptions = OPTIONS.filter(o => !selectedItems.includes(o));
-
-        //from antd end
-
-        //from antd start custom
-
-        const { selectedItems_TALHA } = this.state;
-        const filteredOptions_TALHA = this.state.OPTIONS_TALHA.filter(item => !selectedItems_TALHA.includes(item.name));
-
-        
-
-        //from antd custom end
+        //const filteredOptions_TALHA = this.state.OPTIONS_TALHA.filter(item => !selectedItems_TALHA.includes(item.name));
 
       
         console.log('permission list',permission_list)
@@ -105,9 +74,14 @@ class RolePermissionSetup extends Component {
                         message: 'Please input your E-mail!',
                     },
                     ],
-                })(<Select showSearch style={{ width: '100%' }} placeholder="Select Role"  onChange={this.roleChange}>
+                })(<Select 
+                showSearch 
+                style={{ width: '100%' }} 
+                placeholder="Select Role"  
+                onChange={this.roleChange}>
+
                 {role_list.data.map(item => (
-                  <Select.Option key={item.id} value={item.name}>
+                  <Select.Option key={item.id} value={item.id}>
                       {item.name}
                   </Select.Option>
                   ))}
@@ -121,7 +95,7 @@ class RolePermissionSetup extends Component {
                
                 <Form.Item label="Permission">
                 {getFieldDecorator('permission', {
-                    initialValue: ["add",'hamba'],
+                    initialValue:[1,2],
                     rules: [
                    
                     {
@@ -140,7 +114,7 @@ class RolePermissionSetup extends Component {
                     style={{ width: '100%' }}
                 >
                 {permission_list.data.map(item => (
-                <Select.Option key={item.id} value={item.name}>
+                <Select.Option key={item.id} value={item.id}>
                     {item.name}
                 </Select.Option>
                 ))}
