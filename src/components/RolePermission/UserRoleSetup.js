@@ -1,60 +1,52 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Form, Icon, Input, Button,Row, Col,Table,Select } from 'antd';
-import {Link,withRouter } from "react-router-dom";
+import { Form,Row, Col,Select } from 'antd';
+import {withRouter } from "react-router-dom";
+import { userList } from '../../actions/UserRegistration/UserListAction';
 import { roleList } from '../../actions/RolePermissionAction/RoleAction';
-import { permissionList } from '../../actions/RolePermissionAction/PermissionAction';
-import { permissionOfRole } from '../../actions/RolePermissionAction/RolePermissionAction';
-import { permissionSet } from '../../actions/RolePermissionAction/RolePermissionAction';
+import { roleOfUser } from '../../actions/RolePermissionAction/RolePermissionAction';
+import { roleSet } from '../../actions/RolePermissionAction/RolePermissionAction';
 
 
-class RolePermissionSetup extends Component {
+class UserRoleSetup extends Component {
 
 
     componentDidMount(){
         const {dispatch } = this.props;
-        
+        dispatch(userList());
         dispatch(roleList());
-        dispatch(permissionList());
-        
       }
 
-    roleChange=async(roleId)=>{
+
+
+    userChange=async(userId)=>{
 
         const {dispatch } = this.props;
         
-        await dispatch(permissionOfRole(roleId));
+        await dispatch(roleOfUser(userId));
 
-        const permission_of_role = this.props.permission.permission_of_role.data;
+        const role_of_user = this.props.role.role_of_user.data;
 
         this.props.form.setFieldsValue({
-            permission:permission_of_role
+            role:role_of_user
         })
        
     }
 
-    permissionChange=async(value)=>{
+    roleChange=async(value)=>{
 
         const {dispatch } = this.props;
-        const roleId = this.props.form.getFieldValue('role');
-        const RoleAndPermission = {
-            roleId:roleId,
-            permission:value
+        const userId = this.props.form.getFieldValue('user');
+        const UserAndRole = {
+            userId:userId,
+            role:value
         }
-        await dispatch(permissionSet(RoleAndPermission));
+        await dispatch(roleSet(UserAndRole));
 
         
     }
 
-
-  
-
     render() {
-        const permission_list = this.props.permission.permission_list;
-        const role_list = this.props.role_list;
-        const permission_of_role = this.props.permission.permission_of_role.data;
-        const permission_set_message = this.props.permission.permission_set.message;
-        const { Option } = Select;
 
         const formItemLayout = {
             labelCol: {
@@ -66,9 +58,11 @@ class RolePermissionSetup extends Component {
               sm: { span: 20 },
             },
           };
-
-
         
+        const role_list = this.props.role.role_list.data;
+        const { Option } = Select;
+        const user_list = this.props.user.user_list.data;
+
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
@@ -77,22 +71,22 @@ class RolePermissionSetup extends Component {
             <Row >
                 <Col span={12} offset={6}>
                
-                <Form.Item label="Role">
-                {getFieldDecorator('role', {
+                <Form.Item label="User List">
+                {getFieldDecorator('user', {
                     rules: [
                    
                     {
                         required: true,
-                        message: 'Please input your E-mail!',
+                        message: 'Please Select User',
                     },
                     ],
                 })(<Select 
                 showSearch 
                 style={{ width: '100%' }} 
-                placeholder="Select Role"  
-                onChange={this.roleChange}>
+                placeholder="Select User"  
+                onChange={this.userChange}>
 
-                {role_list.data.map(item => (
+                {user_list.map(item => (
                   <Select.Option key={item.id} value={item.id}>
                       {item.name}
                   </Select.Option>
@@ -105,15 +99,13 @@ class RolePermissionSetup extends Component {
              <Row >
                 <Col span={12} offset={6}>
                
-                <Form.Item label='Permission'>
-                {getFieldDecorator('permission', {
-                    
-                    // initialValue:permission_of_role,
+                <Form.Item label='Role'>
+                {getFieldDecorator('role', {
                     rules: [
                    
                     {
                         required: true,
-                        message: 'Please input your E-mail!',
+                        message: 'Please Select Role',
                         
                     },
                     
@@ -121,12 +113,12 @@ class RolePermissionSetup extends Component {
                 })(<Select
                     mode="multiple"
                     
-                    placeholder="Inserted are removed"
+                    placeholder="Select Role"
                     
-                    onChange={this.permissionChange}
+                    onChange={this.roleChange}
                     style={{ width: '100%' }}
                 >
-                {permission_list.data.map(item => (
+                {role_list.map(item => (
                 <Select.Option key={item.id} value={item.id}>
                     {item.name}
                 </Select.Option>
@@ -145,9 +137,10 @@ class RolePermissionSetup extends Component {
 }
 
 const mapStateToProps = state => ({
-    role_list: state.roleReducer.role_list, 
+    role: state.roleReducer, 
     permission: state.permissionReducer,
+    user: state.userReducer,
 })
 
-const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(RolePermissionSetup);
+const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(UserRoleSetup);
 export default withRouter(connect(mapStateToProps)(WrappedHorizontalLoginForm))

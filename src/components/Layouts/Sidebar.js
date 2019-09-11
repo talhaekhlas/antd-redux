@@ -46,6 +46,10 @@ class Sidebar extends Component {
                                 <Link to="/role-permission-setup">Role Permission Setup</Link>
                             </Menu.Item>
 
+                            <Menu.Item key="user-role-setup">
+                                <Link to="/user-role-setup">User Role Setup</Link>
+                            </Menu.Item>
+
                         </SubMenu>
 
 

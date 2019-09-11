@@ -5,6 +5,7 @@ import { Form, Icon, Input, Button,Row, Col,Table } from 'antd';
 import {Link,withRouter } from "react-router-dom";
 import { roleList } from '../../actions/RolePermissionAction/RoleAction';
 import { addRole } from '../../actions/RolePermissionAction/RoleAction';
+import { userPermissionList } from '../../actions/RolePermissionAction/PermissionAction';
 import { deleteRole } from '../../actions/RolePermissionAction/RoleAction';
 import axios from 'axios'
 
@@ -13,8 +14,9 @@ class Role extends Component {
     componentDidMount(){
     
       const {dispatch } = this.props;
-      console.log('form funciton',this.props.form);
+     
       dispatch(roleList());
+      dispatch(userPermissionList());
     
    
     }
@@ -96,7 +98,11 @@ class Role extends Component {
           ];
 
         
-        const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+        const { getFieldDecorator } = this.props.form;
+
+        const userPermissionList = this.props.permission.user_permission_list.data;
+        
+
         return (
 
             <div>
@@ -104,7 +110,8 @@ class Role extends Component {
                 
                 
                 <Row >
-                <Col span={12} offset={6}>
+
+                {userPermissionList.includes("add")?<Col span={12} offset={6}>
                   <Form layout="inline" onSubmit={this.handleSubmit}>
                     
                     <Form.Item hasFeedback>
@@ -132,7 +139,8 @@ class Role extends Component {
                       </Button>
                     </Form.Item>
                   </Form> 
-                </Col>
+                </Col>:null }
+                
 
                 <Col span={12} offset={6}>
                     <h4 align="center">Role List</h4>
@@ -151,6 +159,7 @@ class Role extends Component {
 
 const mapStateToProps = state => ({
     role_info: state.roleReducer, 
+    permission: state.permissionReducer, 
 })
 
 const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(Role);

@@ -1,4 +1,5 @@
 import { PERMISSION_LIST } from '../../actions/RolePermissionAction/PermissionAction'
+import { USER_PERMISSION_LIST } from '../../actions/RolePermissionAction/PermissionAction'
 import { PERMISSION_OF_ROLE } from '../../actions/RolePermissionAction/RolePermissionAction'
 import { PERMISSION_SET } from '../../actions/RolePermissionAction/RolePermissionAction'
 
@@ -6,6 +7,10 @@ import { PERMISSION_SET } from '../../actions/RolePermissionAction/RolePermissio
 const initialState = {
     permission_list: {
         message:"Initial Message of new role",
+        data:[]
+    },
+    user_permission_list:{
+        message:"Initial User permission list",
         data:[]
     },
     permission_of_role:{
@@ -26,6 +31,11 @@ export const permissionReducer = (state = initialState, action) => {
         case PERMISSION_LIST:
             return Object.assign( {}, state, {
                 permission_list: action.payload
+            })
+
+        case USER_PERMISSION_LIST:
+            return Object.assign( {}, state, {
+                user_permission_list: action.payload
             })
 
         case PERMISSION_OF_ROLE:

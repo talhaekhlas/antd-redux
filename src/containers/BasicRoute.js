@@ -5,6 +5,7 @@ import TodoServer from '../components/TodoServer'
 import Role from '../components/RolePermission/Role'
 import Permission from '../components/RolePermission/Permission'
 import RolePermissionSetup from '../components/RolePermission/RolePermissionSetup'
+import UserRoleSetup from '../components/RolePermission/UserRoleSetup'
 import UserList from '../components/UserInfo/UserList'
 import RegistrationForm from '../components/RegistrationForm/RegistrationForm'
 import LoginForm from '../components/RegistrationForm/LoginForm'
@@ -15,10 +16,8 @@ function BasicExample() {
   return (
     
     <Fragment>
-        {/* <AuthButton /> */}
+        
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/todo" component={TodoServer} /> */}
-        {/* <Route exact path="/todo/:todoId" component={TodoEditServer} /> */}
         <Route exact path="/register" component={RegistrationForm} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/private-route-example" component={PrivateRouteExample} />
@@ -27,6 +26,7 @@ function BasicExample() {
         <PrivateRoute exact path="/permission" component={Permission} />
         <PrivateRoute exact path="/user-list" component={UserList} />
         <PrivateRoute exact path="/role-permission-setup" component={RolePermissionSetup} />
+        <PrivateRoute exact path="/user-role-setup" component={UserRoleSetup} />
     </Fragment>
     
   );
