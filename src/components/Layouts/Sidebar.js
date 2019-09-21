@@ -1,11 +1,27 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
-import {Link } from "react-router-dom";
+import { Layout, Menu, Icon,Form } from 'antd';
+import {Link ,withRouter} from "react-router-dom";
+import { connect } from 'react-redux'
+import { roleList } from '../../actions/RolePermissionAction/RoleAction';
+import { addRole } from '../../actions/RolePermissionAction/RoleAction';
+import { userPermissionList } from '../../actions/RolePermissionAction/PermissionAction';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 class Sidebar extends Component {
+
+    componentDidMount(){
+    
+        const {dispatch } = this.props;
+       
+        dispatch(roleList());
+        dispatch(userPermissionList());
+      
+     
+      }
+
+
     state = {
     collapsed: false,
   };
@@ -15,6 +31,7 @@ class Sidebar extends Component {
     this.setState({ collapsed });
   };
     render() {
+        const userPermissionList = this.props.permission.user_permission_list.data;
         return (
 
                 <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} style={{marginTop:'-1px'}}>
@@ -53,13 +70,13 @@ class Sidebar extends Component {
                         </SubMenu>
 
 
-                        <Menu.Item key="user-list">
+                        {userPermissionList.includes("user-list")?<Menu.Item key="user-list">
                             <Link to="/user-list">
                                 <Icon type="user" />
                                 <span>User List</span>
                             </Link>
                             
-                        </Menu.Item>
+                        </Menu.Item>:null }
                         
                         
                         <Menu.Item key="9">
@@ -73,4 +90,14 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+
+
+
+const mapStateToProps = state => ({
+    role_info: state.roleReducer, 
+    permission: state.permissionReducer, 
+})
+
+const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(Sidebar);
+
+export default withRouter(connect(mapStateToProps)(WrappedHorizontalLoginForm))

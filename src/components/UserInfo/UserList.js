@@ -6,13 +6,21 @@ import {Link,withRouter } from "react-router-dom";
 import { userList } from '../../actions/UserRegistration/UserListAction';
 import { addRole } from '../../actions/RolePermissionAction/RoleAction';
 import { deleteRole } from '../../actions/RolePermissionAction/RoleAction';
+import { userPermissionList } from '../../actions/RolePermissionAction/PermissionAction';
 import axios from 'axios'
 
 class UserList extends Component {
 
     componentDidMount(){
-    
+
       const {dispatch } = this.props;
+
+      dispatch(userPermissionList());  
+
+      const userPermissionList1 = this.props.permission.user_permission_list.data;
+      if(!userPermissionList1.includes("user-list")){
+        window.history.back()
+      }
       
       dispatch(userList());
     
@@ -90,6 +98,7 @@ class UserList extends Component {
 
 const mapStateToProps = state => ({
     user_list: state.userReducer.user_list, 
+    permission: state.permissionReducer,
 })
 
 const WrappedHorizontalLoginForm = Form.create({ name: 'horizontal_login' })(UserList);

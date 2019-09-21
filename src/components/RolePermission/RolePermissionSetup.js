@@ -6,6 +6,7 @@ import { roleList } from '../../actions/RolePermissionAction/RoleAction';
 import { permissionList } from '../../actions/RolePermissionAction/PermissionAction';
 import { permissionOfRole } from '../../actions/RolePermissionAction/RolePermissionAction';
 import { permissionSet } from '../../actions/RolePermissionAction/RolePermissionAction';
+import { userPermissionList } from '../../actions/RolePermissionAction/PermissionAction';
 
 
 class RolePermissionSetup extends Component {
@@ -42,6 +43,8 @@ class RolePermissionSetup extends Component {
             permission:value
         }
         await dispatch(permissionSet(RoleAndPermission));
+
+        dispatch(userPermissionList());
 
         
     }
