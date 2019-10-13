@@ -11,6 +11,7 @@ import RegistrationForm from '../components/RegistrationForm/RegistrationForm'
 import LoginForm from '../components/RegistrationForm/LoginForm'
 import PrivateRouteExample from '../components/PrivateRouteExample/PrivateRouteExample'
 import PrivateRoute from '../components/PrivateRouteExample/PrivateRoute'
+import HomePage from '../components/Virtunus/HomePage'
 
 function BasicExample() {
   return (
@@ -27,6 +28,10 @@ function BasicExample() {
         <PrivateRoute exact path="/user-list" component={UserList} />
         <PrivateRoute exact path="/role-permission-setup" component={RolePermissionSetup} />
         <PrivateRoute exact path="/user-role-setup" component={UserRoleSetup} />
+
+        {/* Virtunus start */}
+
+        <PrivateRoute exact path="/homepage" component={HomePage} />
     </Fragment>
     
   );

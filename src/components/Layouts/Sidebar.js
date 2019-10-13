@@ -77,6 +77,45 @@ class Sidebar extends Component {
                             </Link>
                             
                         </Menu.Item>:null }
+
+                        <SubMenu
+                        key="virtunus"
+                        title={
+                            <span>
+                            <Icon type="team" />
+                            <span>Virtunus</span>
+                            </span>
+                        }
+                        >
+                            <Menu.Item key="role">
+                                <Link to="/homepage">Homepage</Link>
+                            </Menu.Item>
+                            
+                            <Menu.Item key="permission">
+                                <Link to="/permission">Permission</Link>
+                            </Menu.Item>
+
+                            <Menu.Item key="role-permission-setup">
+                                <Link to="/role-permission-setup">Role Permission Setup</Link>
+                            </Menu.Item>
+
+                            <Menu.Item key="user-role-setup">
+                                <Link to="/user-role-setup">User Role Setup</Link>
+                            </Menu.Item>
+
+                        </SubMenu>
+
+
+                        {userPermissionList.includes("user-list")?<Menu.Item key="user-list">
+                            <Link to="/user-list">
+                                <Icon type="user" />
+                                <span>User List</span>
+                            </Link>
+                            
+                        </Menu.Item>:null }
+
+
+                        
                         
                         
                         <Menu.Item key="9">

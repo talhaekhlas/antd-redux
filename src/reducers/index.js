@@ -6,6 +6,7 @@ import R_todo from './R_todo'
 import userReducer from './user/userReducer';
 import roleReducer from './rolePermissionReducer/roleReducer';
 import permissionReducer from './rolePermissionReducer/permissionReducer';
+import moduleListReducer from './moduleListReducer/moduleListReducer';
 
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   R_todo,
   userReducer,
   roleReducer,
-  permissionReducer
+  permissionReducer,
+  moduleListReducer
 })
 
 export default rootReducer
