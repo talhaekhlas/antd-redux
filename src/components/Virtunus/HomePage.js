@@ -16,32 +16,26 @@ class HomePage extends Component {
   
     console.log('data',data)
     return (
-      <div className="gutter-example">
-        {!data.length?'loading....':<div><Row gutter={20}>
-          <Col className="gutter-row" span={8} >
-            <div className="gutter-box" style={{background:'#0F8FA8'}}>{data[0].name}</div>
-          </Col>
-          <Col className="gutter-row" span={8} >
-            <div className="gutter-box" style={{background:'red'}}>{data[1].name}</div>
-          </Col>
-          <Col className="gutter-row" span={8} >
-            <div className="gutter-box" style={{background:'red'}}>{data[2].name}</div>
-          </Col>
-        </Row>
-        <br/>
-        <Row gutter={20}>
-          <Col className="gutter-row" span={8} >
-            <div className="gutter-box" style={{background:'red'}}>{data[3].name}</div>
-          </Col>
-          <Col className="gutter-row" span={8} >
-            <div className="gutter-box" style={{background:'red'}}>{data[4].name}</div>
-          </Col>
-          <Col className="gutter-row" span={8} >
-            <div className="gutter-box" style={{background:'red'}}>{data[5].name}</div>
-          </Col>
-        </Row></div>}
-        
-      </div>
+      <div>
+
+      
+      {!data.length?null:<div className="module-layout">
+       
+      <div className="module-single">
+         <img src="https://jctodo.nl/templates/jctodo/images/jctodo_logo_color.png" height="200" width="200" alt=""/>
+       </div>
+       <div className="module-single">
+         <img src="https://www.psychologies.co.uk/sites/default/files/styles/psy2_page_header/public/wp-content/uploads/2013/04/family.gif"  height="200" width="200" alt=""/>
+       </div>
+       
+       
+       <div className="module-single"></div>
+       <div className="module-single"></div>
+       <div className="module-single"></div>
+       <div className="module-single"></div>
+     </div>}
+     </div>
+      
     );
   }
 }
