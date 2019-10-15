@@ -1,0 +1,1 @@
+const test = 'It is asolei test'

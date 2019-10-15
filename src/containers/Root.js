@@ -5,6 +5,7 @@ import configureStore from '../configureStore'
 
 import Layouts from '../components/Layouts/Layouts'
 import '../App.css';
+import TestLayout from '../components/Layouts/TestLayout';
 
 
 const store = configureStore()
@@ -16,7 +17,8 @@ export default class Root extends Component {
 
         <Router>
           
-          <Layouts/>
+          {/* <Layouts/> */}
+          <TestLayout/>
 
          
 
