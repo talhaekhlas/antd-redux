@@ -17,8 +17,8 @@ export default class Root extends Component {
 
         <Router>
           
-          {/* <Layouts/> */}
-          <TestLayout/>
+          <Layouts/>
+          {/* <TestLayout/> */}
 
          
 
