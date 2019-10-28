@@ -12,6 +12,7 @@ import LoginForm from '../components/RegistrationForm/LoginForm'
 import PrivateRouteExample from '../components/PrivateRouteExample/PrivateRouteExample'
 import PrivateRoute from '../components/PrivateRouteExample/PrivateRoute'
 import HomePage from '../components/Virtunus/HomePage'
+import TodoList from '../components/TodoList/TodoList'
 
 function BasicExample() {
   return (
@@ -32,6 +33,10 @@ function BasicExample() {
         {/* Virtunus start */}
 
         <PrivateRoute exact path="/homepage" component={HomePage} />
+
+        <PrivateRoute exact path="/todo-list-by-project/:id" component={TodoList} />
+
+        
     </Fragment>
     
   );

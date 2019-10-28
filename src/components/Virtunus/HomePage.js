@@ -14,25 +14,23 @@ class HomePage extends Component {
   render() {
     const data  = this.props.fromModuleListReducer.module_list.data;
   
-    console.log('data',data)
+    console.log('data ekhlas',data)
     return (
       <div>
 
       
-      {!data.length?null:<div className="module-layout">
+      {!data.length?'Loading.....':<div className="module-layout">
+
+        {data.map((item,index)=><div className="module-single" key={index}>
+          {item.name}
+          <Link to={"/todo-list-by-project/"+item.id}>
+          <img src="https://jctodo.nl/templates/jctodo/images/jctodo_logo_color.png" height="200" width="200" alt=""/>
+          </Link>
+         
+       </div>)}
        
-      <div className="module-single">
-         <img src="https://jctodo.nl/templates/jctodo/images/jctodo_logo_color.png" height="200" width="200" alt=""/>
-       </div>
-       <div className="module-single">
-         <img src="https://www.psychologies.co.uk/sites/default/files/styles/psy2_page_header/public/wp-content/uploads/2013/04/family.gif"  height="200" width="200" alt=""/>
-       </div>
-       
-       
-       <div className="module-single"></div>
-       <div className="module-single"></div>
-       <div className="module-single"></div>
-       <div className="module-single"></div>
+      
+      
      </div>}
      </div>
       
