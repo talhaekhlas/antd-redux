@@ -57,7 +57,7 @@ class TodoList extends Component {
                     onMouseEnter={this.todoOnMouseEnter}
                     onMouseLeave={this.todoOnMouseLeave}
                     >
-                        <span className="todo-single-name">{item.name}</span> 
+                        <span className="todo-single-name" style={{fontSize:'14px'}}>{item.name}</span> 
                         <span className='todo-mouse-leave'>
                             <span className="todo-mouse-enter-action-menu">
                                 <span style={{marginLeft:'20px',fontSize:'12px',color:'#7acef4'}}>Family</span>
@@ -70,7 +70,7 @@ class TodoList extends Component {
                                 <span style={{marginLeft:'20px',fontSize:'17px',color:'#d2d9e7'}}>|</span>
                                 <span style={{marginLeft:'20px',fontSize:'17px',color:'#ebc84a'}}><i className="fa fa-star-o" aria-hidden="true"></i></span>
                             </span>
-                            <span className="todo-delete-button" style={{color:'white',fontSize:'20px'}}><i className="fa fa-trash-o" aria-hidden="true"></i></span>
+                            <span className="todo-delete-button" style={{color:'red',fontSize:'20px'}}><i className="fa fa-trash-o" aria-hidden="true"></i></span>
                             
                         </span>
                         
