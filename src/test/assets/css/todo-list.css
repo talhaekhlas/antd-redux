@@ -10,62 +10,63 @@ ul.todo-list {
     position: relative;
     padding: 12px 8px 12px 40px;
     list-style-type: none;
-    background: black;
-    color:white;
+    background: #f7f7f7;
+    color:black;
     font-size: 18px;
     transition: 0.2s;
     margin-bottom: 10px;
-    border-radius: 20px;
+    
     width:100%;
-    height: 80px;
+    height: 60px;
    
   }
 
   li.todo-single .todo-single-name{
     width:30%;
     height: 50px;
-    background:yellow;
+    
     display: inline-block;
   }
 
 
-  
-  /* Set all odd list items to a different color (zebra-stripes) */
-  ul.todo-list li:nth-child(odd) {
-    background: #535688;
-  }
-  
-  /* Darker background-color on hover */
   ul.todo-list li:hover {
-    background: #3D93D8;
+    background: #AFE4E9;
     color:black
   }
   
  
  .todo-mouse-enter{
-     /* background:white; */
+     
      border-radius: 10px;
     
      display: inline-block;
-     margin-left: 5%;
+     margin-left: 7%;
 
-    width:40%;
-    height: 50px;
-    background:green;
+    width:60%;
+    height: 40px;
+    
     display: inline-block;
      
      
  }
 
- .todo-delete-button{
-    border-radius: 10px;
-    
-    display: inline-block;
-    margin-left: 10%;
+ .todo-mouse-enter-action-menu{
+     height: 35px;
+     width:65%;
+     background:#fff;
+     display: inline-block;
+     border-radius:20px;
 
-   width:10%;
-   height: 50px;
-   background:blueviolet;
+ }
+
+ .todo-delete-button{
+   
+    display: inline-block;
+    margin-left: 15%;
+
+   width:15%;
+   height: 35px;
+   
    display: inline-block;
  }
 
