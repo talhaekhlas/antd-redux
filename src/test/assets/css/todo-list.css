@@ -1,5 +1,5 @@
 /* Remove margins and padding from the list */
-ul.todo-list {
+ul.todo-list,ul.todo-list-new {
     margin: 0;
     padding: 0;
   }
@@ -76,5 +76,114 @@ ul.todo-list {
 
     
 }
+
+
+/* todo list new */
+
+ul.todo-list-new li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #f7f7f7;
+    color:black;
+    font-size: 18px;
+    transition: 0.2s;
+    margin-bottom: 10px;
+    
+    width:100%;
+    height: 60px;
+   
+  }
+
+
+  li.todo-single-new .todo-radio-circle-new{
+    height: 18px;
+    width: 18px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    left: 20px;
+    top: 16px;
+    position: absolute;
+}
+.todo-circle-left{
+    height: 2px;
+    width: 8px;
+    top: 8px;
+    left: 1px;
+    transform: rotate(31deg);
+    background: gray;
+    position: absolute;
+}
+.todo-circle-right{
+    height: 2px;
+    width: 10px;
+    top: 7px;
+    left: 5px;
+    transform: rotate(133deg);
+    background: gray;
+    position: absolute;
+}
+
+
+
+
+  li.todo-single-new .todo-name-new{
+    width:30%;
+    height: 50px;
+    
+    display: inline-block;
+  }
+
+
+  .todo-name-new{
+    height: 35px;
+    width:20%;
+    
+    display: inline-block;
+    
+    left: 50px;
+    position:absolute;
+
+}
+
+
+.todo-action-menu-new{
+    height: 35px;
+    width:37%;
+    background:white;
+    /* display: inline-block; */
+    
+    right: -400px;
+    position:absolute;
+    border-radius: 20px;
+    
+
+}
+ul.todo-list-new li:hover .todo-action-menu-new{
+    left: 400px;
+}
+
+.todo-delete-button-new{
+    height: 35px;
+    width:5%;
+    right: -890px;
+    position:absolute;
+    
+
+}
+
+
+
+ul.todo-list-new li:hover .todo-delete-button-new{
+   
+    left: 890px;
+    
+}
+
+
+
+
+
   
   

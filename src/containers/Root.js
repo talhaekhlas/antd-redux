@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import configureStore from '../configureStore'
 
 import Layouts from '../components/Layouts/Layouts'
-import '../App.css';
+// import '../App.css';
 import TestLayout from '../components/Layouts/TestLayout';
 
 
